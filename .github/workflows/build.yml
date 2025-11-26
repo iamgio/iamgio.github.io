@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarkdown-labs/setup-quarkdown@v1
+        with:
+          quarkdown-version: devbuild # TODO use stable when v1.13 is released
+      
+      - name: Build site
+        run: quarkdown c src/main.qd --output output --clean
+      
+      - name: Check output
+        run: ls -la output/*
+      
+      # TODO deploy
