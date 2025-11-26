@@ -1,0 +1,20 @@
+.docname {Giorgio Garofalo / iamgio}
+.docdescription {Giorgio Garofalo's personal website}
+.doctype {plain}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.dockeywords
+  - Giorgio Garofalo
+  - iamgio
+  - quarkdown
+  - software engineering
+  - development
+
+.docauthors
+  - Giorgio Garofalo
+    - website: https://iamgio.eu
+
+.cssproperties
+  - background-color: #F0F0F0
+  - main-color: #2A1A18

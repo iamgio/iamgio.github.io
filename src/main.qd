@@ -1,11 +1,4 @@
-.docname {Giorgio Garofalo / iamgio}
-.doctype {plain}
-.doclang {English}
-.theme {paperwhite} layout:{latex}
-
-.docauthors
-  - Giorgio Garofalo
-    - website: https://iamgio.eu
+.include {setup.qd} 
 
 # .docauthor
 
