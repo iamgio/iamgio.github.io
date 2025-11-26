@@ -1,0 +1,12 @@
+.docname {Giorgio Garofalo / iamgio}
+.doctype {plain}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.docauthors
+  - Giorgio Garofalo
+    - website: https://iamgio.eu
+
+# .docauthor
+
+This is a test!
