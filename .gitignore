@@ -1,3 +1,6 @@
+# Quarkdown
+**/output/
+
 # IDE
 .idea/
 .vscode/
@@ -12,5 +15,5 @@ Thumbs.db
 # Node
 node_modules/
 
-# Quarkdown
-**/output
+# Misc
+.claude/
