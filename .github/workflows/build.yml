@@ -17,7 +17,7 @@ jobs:
           quarkdown-version: devbuild # TODO use stable when v1.13 is released
       
       - name: Build site
-        run: quarkdown c src/main.qd --output output --clean
+        run: quarkdown c src/main.qd --out output --clean
       
       - name: Check output
         run: ls -la output/*
