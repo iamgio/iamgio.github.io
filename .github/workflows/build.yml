@@ -16,10 +16,16 @@ jobs:
         with:
           quarkdown-version: devbuild # TODO use stable when v1.13 is released
       
-      - name: Build site
+      - name: Build
         run: quarkdown c src/main.qd --out output --clean
       
-      - name: Check output
-        run: ls -la output/*
-      
-      # TODO deploy
+      - name: Get output directory
+        id: output-dir
+        run: echo "dir=$(ls -d output/*/)" >> $GITHUB_OUTPUT
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: dist
+          publish_dir: ${{ steps.output-dir.outputs.dir }}
