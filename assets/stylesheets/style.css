@@ -1,0 +1,11 @@
+a {
+    text-decoration: none !important;
+}
+
+a::after {
+    font-family: 'boxicons', monospace;
+    font-weight: normal;
+    margin-inline-start: 4px;
+    content: "\eb3d";
+    vertical-align: text-bottom;
+}

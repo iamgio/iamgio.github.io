@@ -18,3 +18,5 @@
 .cssproperties
   - background-color: #F0F0F0
   - main-color: #2A1A18
+
+.css {.read {../assets/stylesheets/style.css}}
