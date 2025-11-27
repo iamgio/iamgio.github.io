@@ -1,17 +1,23 @@
 Back when I first got access to our family computer at the age of 8,
 I was instantly fascinated by the number of things one could do with it.
-Aside from playing Space Cadet, I was obsessed with a single word: ***create***.
+Aside from playing [Space Cadet](https://en.wikipedia.org/wiki/Full_Tilt!_Pinball), I was obsessed with a single word: ***create***.
 
 I used to spend hours googling *how to create characters*, *how to create games*,
 *how to create websites*,
 trying to learn everything I could about making things.  
-It's when I found out about [GameMaker](https://www.yoyogames.com/gamemaker) that
+It was when I found out about [GameMaker](https://www.yoyogames.com/gamemaker) that
 my passion for software development truly ignited:
 I was finally able to create my own games from scratch (kind of),
 and that gave me an incredible sense of freedom, accomplishment,
 and motivation to keep learning.
 It wasn't long before I wrote my first lines of code, modding Minecraft
 in ways that give me a good laugh today.
+
+.row
+    .clip {circle} 
+        !(100px)[](https://avatars.githubusercontent.com/u/16124324?v=4)
+
+    <- that's me
 
 Fast forward to this day, *create* is still my favorite word,
 whether it's about software, design, or art.
