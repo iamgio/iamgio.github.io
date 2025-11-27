@@ -2,7 +2,7 @@ a {
     text-decoration: none !important;
 }
 
-a::after {
+a:not(.sidebar a)::after {
     font-family: 'boxicons', monospace;
     font-weight: normal;
     margin-inline-start: 4px;
