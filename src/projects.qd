@@ -1,0 +1,27 @@
+## Projects
+
+I lost count of all the projects I've started throughout my journey in the field.
+Some reached completion, many have never seen the light of day,
+and only a handful became something I'm truly proud of.
+
+Here are my favorites:
+
+- [**Quarkdown**](https://github.com/iamgio/quarkdown) .br
+  Born as a simple parser and renderer for a custom Markdown flavor,
+  it has evolved into a full-fledged typesetting system.  
+  Focused on ease of use and versatility, it allows generating papers, books,
+  presentations, knowledge bases, and simple websites.
+
+- [**Pikt**](https://github.com/iamgio/pikt) .br
+  An esoteric programming language, where programs are represented as images,
+  and each pixel's color encodes a specific instruction.  
+  Made for fun, it turned out to be surprisingly powerful and Turing-complete,
+  with both a JVM compiler and an interpreter.
+
+- [**Animated**](https://github.com/iamgio/animated) .br
+  A JavaFX library that adds support to implicit animations,
+  typical of modern declarative UI frameworks like Flutter or SwiftUI.
+
+- [**Chorus**](https://github.com/iamgio/chorus) .br
+  The first YAML editor built specifically for Minecraft configuration files,
+  with useful completions, previews, and a built-in SFTP and FTP client.

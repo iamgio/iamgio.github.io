@@ -4,4 +4,6 @@
 
 To do: write a good copy :)
 
-.include {contacts.qd} 
+.includeall
+    - projects.qd
+    - contacts.qd
