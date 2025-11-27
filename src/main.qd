@@ -2,9 +2,8 @@
 
 # .docauthor
 
-To do: write a good copy :)
-
 .includeall
+    - about.qd
     - projects.qd
     - experience.qd
     - contacts.qd
