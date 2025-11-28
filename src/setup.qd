@@ -16,7 +16,9 @@
     - website: https://iamgio.eu
 
 .cssproperties
-  - background-color: #F0F0F0
-  - main-color: #2A1A18
+  - background-color: #f2ede4
+  - main-color: #3f2816
+  - heading-color: #4f321c
+  - link-color: #bb4110
 
 .read {../assets/stylesheets/style.css}::css
