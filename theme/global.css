@@ -19,20 +19,20 @@ body.quarkdown.quarkdown-plain > main {
 body.quarkdown.quarkdown-plain > aside {
   max-width: 30vw;
   width: 30vw;
-  margin: 0 12px;
+  --aside-outer-margin: 12px;
+  --aside-inner-margin: calc(var(--aside-outer-margin) * 2);
+  margin: 0 var(--aside-outer-margin);
 }
 body.quarkdown.quarkdown-plain > aside#margin-area-left {
-  margin-right: 24px;
+  margin-right: var(--aside-inner-margin);
 }
 body.quarkdown.quarkdown-plain > aside#margin-area-right {
-  margin-left: 24px;
+  margin-left: var(--aside-inner-margin);
 }
 @media screen and (max-width: 800px), print and (max-width: 1000px) {
-  body.quarkdown.quarkdown-plain aside#margin-area-left {
+  body.quarkdown.quarkdown-plain aside#margin-area-left, body.quarkdown.quarkdown-plain aside#margin-area-right:empty {
     max-width: 0;
-  }
-  body.quarkdown.quarkdown-plain aside#margin-area-right:empty {
-    max-width: 0;
+    --aside-inner-margin: 8px;
   }
 }
 body.quarkdown.quarkdown-slides .reveal .slides {
