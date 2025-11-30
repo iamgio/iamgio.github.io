@@ -15,8 +15,10 @@
     <link rel="stylesheet" href="theme/theme.css">
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
         body {
+            --qd-heading-custom-font: 'Outfit';
         }
 
         .page-break {
@@ -50,11 +52,19 @@
 <body class="quarkdown quarkdown-plain">
 <aside id="margin-area-left" class="margin-area"></aside>
 <main>
-    <style data-hidden="">:root { --qd-background-color: #fefcf7 !important; --qd-main-color: #3f2816 !important; --qd-heading-color: #4f321c !important; --qd-link-color: #bb4110 !important; }</style><p><style data-hidden="">/* on large screens */
+    <p></p><style data-hidden="">:root { --qd-background-color: #fefcf7 !important; --qd-main-color: #3f2816 !important; --qd-heading-color: #4f321c !important; --qd-heading-font-size: 1.2em !important; --qd-link-color: #bb4110 !important; }</style><p><style data-hidden="">/* on large screens */
 @media (min-width: 1024px) {
     main {
         width: 80% !important;
     }
+}
+
+h1 {
+    font-size: 3rem !important;
+}
+
+h2 {
+    font-size: 2rem !important;
 }
 
 a {
