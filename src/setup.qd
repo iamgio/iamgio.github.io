@@ -15,10 +15,13 @@
   - Giorgio Garofalo
     - website: https://iamgio.eu
 
+.font heading:{GoogleFonts:Outfit} 
+
 .cssproperties
   - background-color: #fefcf7
   - main-color: #3f2816
   - heading-color: #4f321c
+  - heading-font-size: 1.2em
   - link-color: #bb4110
 
 .read {../assets/stylesheets/style.css}::css
