@@ -25,3 +25,5 @@
   - link-color: #bb4110
 
 .read {stylesheets/style.css}::css
+
+.html {<script>.read {js/blog.js}</script>}
