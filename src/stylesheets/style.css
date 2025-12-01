@@ -32,3 +32,20 @@ a:not(.sidebar a)::after {
     content: "\eb3d";
     vertical-align: text-bottom;
 }
+
+/* Blog */
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-item {
+    display: block !important;
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    --shadow-color: color-mix(in srgb, var(--qd-heading-color) 15%, transparent);
+    border: 1px solid var(--shadow-color);
+    box-shadow: 0 20px 48px var(--shadow-color);
+}
