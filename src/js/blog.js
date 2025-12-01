@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const dateElement = createBlogItemDateElement(blogDate);
         blogItem.insertBefore(dateElement, blogItem.firstChild);
+
+        // Apply href to blog item and remove the link element
+        const href = linkElement.getAttribute('href');
+        blogItem.style.cursor = 'pointer';
+        blogItem.addEventListener('click', () => window.location.href = href);
+        linkElement.remove();
     });
 });
 
