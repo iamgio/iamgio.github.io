@@ -1,0 +1,8 @@
+.include {../../setup.qd}
+
+.function {blogpost}
+    title? date?:
+    .if {.date::isnone::not}
+        .date::text classname:{blog-date}
+        
+    # .title::otherwise fallback:{Unnamed}

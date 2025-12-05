@@ -1,7 +1,7 @@
 ## Blog
 
 .container classname:{blog-container} fullwidth:{yes}
-    .foreach {.listfiles {blog} sortby:{name} order:{descending}} 
+    .foreach {.listfiles {blog} directories:{no} sortby:{name} order:{descending}} 
         path:
         .container classname:{blog-item} 
             .path::subdocument label:{.path::filename extension:{no}}
