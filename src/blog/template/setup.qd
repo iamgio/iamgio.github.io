@@ -2,6 +2,9 @@
 
 .function {blogpost}
     title? date?:
+    .container classname:{blog-navigation} fullwidth:{yes}
+        [Home](/#blog)
+
     .if {.date::isnone::not}
         .date::text classname:{blog-date}
         

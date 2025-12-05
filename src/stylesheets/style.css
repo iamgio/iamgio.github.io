@@ -58,6 +58,14 @@ a:not(.sidebar a)::after {
     box-shadow: 0 24px 60px var(--shadow-color);
 }
 
+.blog-item .blog-navigation {
+    display: none !important;
+}
+
+.blog-navigation {
+    margin-bottom: 2em;
+}
+
 .blog-date {
     font-size: 0.9em;
     opacity: 0.7;
