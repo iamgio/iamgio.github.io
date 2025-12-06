@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Giorgio Garofalo's personal website">
     <meta name="keywords" content="Giorgio Garofalo, iamgio, quarkdown, software engineering, development">
-    <meta name="author" content="Giorgio Garofalo">
+    <meta name="author" content="Giorgio Garofalo, Giorgio Garofalo, Giorgio Garofalo">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giorgio Garofalo / iamgio</title>
     <script src="script/quarkdown.js"></script>
@@ -16,9 +16,11 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
         body {
-            --qd-heading-custom-font: 'Outfit';
+            --qd-heading-custom-font: 'Outfit', 'Outfit', 'Outfit';
         }
 
         .page-break {
@@ -85,7 +87,95 @@ a:not(.sidebar a)::after {
     margin-inline-start: 4px;
     content: "\eb3d";
     vertical-align: text-bottom;
-}</style></p><p></p><div class="page-break" data-hidden=""></div><h1 id="giorgio-garofalo">Giorgio Garofalo</h1><p>Back when I first got access to our family computer at the age of 8,
+}
+
+/* Blog */
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-item {
+    display: block !important;
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    --shadow-color: color-mix(in srgb, var(--qd-heading-color) 15%, transparent);
+    border: 1px solid var(--shadow-color);
+    box-shadow: 0 20px 48px var(--shadow-color);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-item:hover {
+    --shadow-color: color-mix(in srgb, var(--qd-heading-color) 25%, transparent);
+    border-color: var(--shadow-color);
+    box-shadow: 0 24px 60px var(--shadow-color);
+}
+
+.blog-item .blog-navigation {
+    display: none !important;
+}
+
+.blog-item,
+.blog-item>.blog-item-content {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.blog-item>.blog-item-content {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.blog-navigation {
+    margin-bottom: 2em;
+}
+
+.blog-date {
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin-bottom: 1em;
+}
+
+.blog-date+.page-break+h1 {
+    margin-top: 0 !important;
+}
+
+@media (min-width: 800px) {
+    .blog-item {
+        margin-left: -2rem;
+        padding: 2rem;
+        width: calc(100% + 4rem);
+    }
+}</style></p><script>document.addEventListener("DOMContentLoaded", function () {
+    const blogItems = document.querySelectorAll('.blog-item');
+    Array.from(blogItems).forEach(blogItem => {
+        const linkElement = getBlogItemLinkElement(blogItem);
+        if (!linkElement) return;
+
+        // Apply href to blog item and remove the link element
+        const href = linkElement.getAttribute('href');
+        blogItem.style.cursor = 'pointer';
+        blogItem.addEventListener('click', () => window.location.href = href);
+        linkElement.style.display = 'none';
+    });
+});
+
+function getBlogItems() {
+    return document.querySelectorAll('.blog-item');
+}
+
+/**
+ * The first element of the blog item is an <a> tag to the blog post subdocument.
+ * This function returns that <a> element.
+ * @param {Element} blogItem - The blog item element.
+ * @returns {Element} - The <a> element of the blog item.
+ */
+function getBlogItemLinkElement(blogItem) {
+    return blogItem.querySelector('.blog-item-content').firstChild;
+}
+</script><p></p><div class="page-break" data-hidden=""></div><h1 id="giorgio-garofalo">Giorgio Garofalo</h1><p>Back when I first got access to our family computer at the age of 8,
 I was instantly fascinated by the number of things one could do with it.
 Aside from playing <a href="https://en.wikipedia.org/wiki/Full_Tilt!_Pinball">Space Cadet</a>, I was obsessed with a single word: <em><strong>create</strong></em>.</p><p>I used to spend hours googling <em>how to create characters</em>, <em>how to create games</em>,
 <em>how to create websites</em>,
@@ -121,7 +211,128 @@ with useful completions, previews, and a built-in SFTP and FTP client.</p></li><
 a startup focusing on building companies&rsquo; knowledge bases.
 I&rsquo;m mainly contributing to the development of their visual editor.</p><p>In the meantime, I&rsquo;m also completing a Master&rsquo;s Degree in <em>Computer Science and Engineering</em>
 at the University of Bologna, after earning my Bachelor&rsquo;s Degree in the same field in 2024.</p><p>Previously, I worked at <a href="https://cosmobile.com">Cosmobile</a>,
-leading the development of a modern iOS app for internal use.</p><h2 id="letrsquos-connect">Let&rsquo;s connect!</h2><div style="grid-template-columns: auto auto; justify-content: flex-start; align-items: center; gap: 1.0cm;" class="stack stack-grid"><p><a href="https://github.com/iamgio">GitHub</a><br /><span class="codespan-content"><code>iamgio</code></span></p><p><a href="https://t.me/iamgio">Telegram</a><br /><span class="codespan-content"><code>@iamgio</code></span></p><p><a href="https://www.linkedin.com/in/giorgio-garofalo/">LinkedIn</a><br /><span class="codespan-content"><code>in/giorgio-garofalo</code></span></p><p><a href="mailto:giorgiogarofalo02@gmail.com">E-mail</a><br /><span class="codespan-content"><code>giorgiogarofalo02@gmail.com</code></span></p></div>
+leading the development of a modern iOS app for internal use.</p><h2 id="letrsquos-connect">Let&rsquo;s connect!</h2><div style="grid-template-columns: auto auto; justify-content: flex-start; align-items: center; gap: 1.0cm;" class="stack stack-grid"><p><a href="https://github.com/iamgio">GitHub</a><br /><span class="codespan-content"><code>iamgio</code></span></p><p><a href="https://t.me/iamgio">Telegram</a><br /><span class="codespan-content"><code>@iamgio</code></span></p><p><a href="https://www.linkedin.com/in/giorgio-garofalo/">LinkedIn</a><br /><span class="codespan-content"><code>in/giorgio-garofalo</code></span></p><p><a href="mailto:giorgiogarofalo02@gmail.com">E-mail</a><br /><span class="codespan-content"><code>giorgiogarofalo02@gmail.com</code></span></p></div><h2 id="blog">Blog</h2><div class="container fullwidth blog-container"><div class="container blog-item"><div class="container blog-item-content"><a href="./2025-11-30-hello-world.html">2025-11-30-hello-world</a><p></p><style data-hidden="">:root { --qd-background-color: #fefcf7 !important; --qd-main-color: #3f2816 !important; --qd-heading-color: #4f321c !important; --qd-heading-font-size: 1.2em !important; --qd-link-color: #bb4110 !important; }</style><p><style data-hidden="">/* on large screens */
+@media (min-width: 1024px) {
+    main {
+        width: 80% !important;
+    }
+}
+
+/* on medium-small screens */
+@media (max-width: 800px) {
+    :root {
+        --qd-main-font-size: 1.1em !important;
+        --qd-line-height: 1.6 !important;
+    }
+}
+
+h1 {
+    font-size: 3.5rem !important;
+}
+
+h2 {
+    font-size: 2.5rem !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a:not(.sidebar a)::after {
+    font-family: 'boxicons', monospace;
+    font-weight: normal;
+    margin-inline-start: 4px;
+    content: "\eb3d";
+    vertical-align: text-bottom;
+}
+
+/* Blog */
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-item {
+    display: block !important;
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    --shadow-color: color-mix(in srgb, var(--qd-heading-color) 15%, transparent);
+    border: 1px solid var(--shadow-color);
+    box-shadow: 0 20px 48px var(--shadow-color);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-item:hover {
+    --shadow-color: color-mix(in srgb, var(--qd-heading-color) 25%, transparent);
+    border-color: var(--shadow-color);
+    box-shadow: 0 24px 60px var(--shadow-color);
+}
+
+.blog-item .blog-navigation {
+    display: none !important;
+}
+
+.blog-item,
+.blog-item>.blog-item-content {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.blog-item>.blog-item-content {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.blog-navigation {
+    margin-bottom: 2em;
+}
+
+.blog-date {
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin-bottom: 1em;
+}
+
+.blog-date+.page-break+h1 {
+    margin-top: 0 !important;
+}
+
+@media (min-width: 800px) {
+    .blog-item {
+        margin-left: -2rem;
+        padding: 2rem;
+        width: calc(100% + 4rem);
+    }
+}</style></p><script>document.addEventListener("DOMContentLoaded", function () {
+    const blogItems = document.querySelectorAll('.blog-item');
+    Array.from(blogItems).forEach(blogItem => {
+        const linkElement = getBlogItemLinkElement(blogItem);
+        if (!linkElement) return;
+
+        // Apply href to blog item and remove the link element
+        const href = linkElement.getAttribute('href');
+        blogItem.style.cursor = 'pointer';
+        blogItem.addEventListener('click', () => window.location.href = href);
+        linkElement.style.display = 'none';
+    });
+});
+
+function getBlogItems() {
+    return document.querySelectorAll('.blog-item');
+}
+
+/**
+ * The first element of the blog item is an <a> tag to the blog post subdocument.
+ * This function returns that <a> element.
+ * @param {Element} blogItem - The blog item element.
+ * @returns {Element} - The <a> element of the blog item.
+ */
+function getBlogItemLinkElement(blogItem) {
+    return blogItem.querySelector('.blog-item-content').firstChild;
+}
+</script><div class="container fullwidth blog-navigation"><p><a href="/#blog">Home</a></p></div><span class="blog-date">December 5, 2025</span><div class="page-break" data-hidden=""></div><h1 id="hello-world">Hello, world!</h1><p>This is my first blog post! This blog, as the rest of the website, is built with <a href="https://quarkdown.com">Quarkdown</a>.</p><p>Whenever I feel like writing something about any topic, I&rsquo;ll post it here, be it related to software, thoughts, or anything else that comes to mind.</p></div></div></div>
 </main>
 <aside id="margin-area-right" class="margin-area"></aside>
 </body>
