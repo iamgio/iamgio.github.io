@@ -1,0 +1,6 @@
+.include {template/setup.qd}
+.blogpost title:{Hello, world!} date:{December 5, 2025}
+
+This is my first blog post! This blog, as the rest of the website, is built with [Quarkdown](https://quarkdown.com).
+
+Whenever I feel like writing something about any topic, I'll post it here, be it related to software, thoughts, or anything else that comes to mind.
