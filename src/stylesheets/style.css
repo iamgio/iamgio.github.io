@@ -21,6 +21,10 @@ h2 {
     font-size: 2.5rem !important;
 }
 
+h3 {
+    font-size: 2rem !important;
+}
+
 a {
     text-decoration: none !important;
 }
@@ -91,7 +95,8 @@ a:not(.sidebar a)::after {
     margin-bottom: 1em;
 }
 
-.blog-date + .page-break + h1 {
+.blog-date + h1,
+.blog-date + h3 {
     margin-top: 0 !important;
 }
 

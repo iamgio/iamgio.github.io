@@ -8,4 +8,4 @@
     .if {.date::isnone::not}
         .date::text classname:{blog-date}
         
-    # .title::otherwise fallback:{Unnamed}
+    #! .title::otherwise fallback:{Unnamed}

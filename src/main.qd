@@ -1,4 +1,4 @@
-.include {setup.qd} 
+.include {setup.qd}
 
 # .docauthor
 
@@ -8,3 +8,5 @@
     - experience.qd
     - contacts.qd
     - blog.qd
+
+.html {<script>.read {js/blog-posts-lister.js}</script>}

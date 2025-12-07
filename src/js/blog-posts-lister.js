@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     const blogItems = document.querySelectorAll('.blog-item');
+    console.log(`Found ${blogItems.length} blog items`);
     Array.from(blogItems).forEach(blogItem => {
         const linkElement = getBlogItemLinkElement(blogItem);
         if (!linkElement) return;
+
+        // Reduce heading levels within the blog item
+        reduceHeadingLevels(blogItem);
 
         // Apply the link to the blog item and remove the link element
         const href = linkElement.getAttribute('href');
@@ -37,4 +41,27 @@ function wrapBlogItemWithLink(blogItem, href) {
     anchor.appendChild(blogItem.cloneNode(true));
     blogItem.parentElement.appendChild(anchor);
     blogItem.remove();
+}
+
+/**
+ * Maps h1-h4 heading levels to h3-h6 within the blog item content.
+ */
+function reduceHeadingLevels(blogItem) {
+    console.log('Reducing heading levels in blog item');
+    const increase = 2;
+    const minLevel = 1;
+    const maxLevel = 4;
+    const headings = Array.from(blogItem.querySelectorAll('h1, h2, h3, h4'));
+    headings.forEach(heading => {
+        const level = parseInt(heading.tagName[1]);
+        if (level >= minLevel && level <= maxLevel) {
+            console.log(`Reducing heading level: ${heading.tagName} to h${level + increase}`);
+            const newHeading = document.createElement(`h${level + increase}`);
+            newHeading.innerHTML = heading.innerHTML;
+            Array.from(heading.attributes).forEach(attr => {
+                newHeading.setAttribute(attr.name, attr.value);
+            });
+            heading.parentNode.replaceChild(newHeading, heading);
+        }
+    });
 }
