@@ -118,14 +118,23 @@ a:not(.sidebar a)::after {
 }
 
 .blog-item,
-.blog-item>.blog-item-content {
+.blog-item > .blog-item-content {
     max-height: 300px;
     overflow: hidden;
 }
 
-.blog-item>.blog-item-content {
+.blog-item > .blog-item-content {
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.blog-item-link-wrapper {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.blog-item-link-wrapper::after {
+    content: none !important;
 }
 
 .blog-navigation {
@@ -138,7 +147,7 @@ a:not(.sidebar a)::after {
     margin-bottom: 1em;
 }
 
-.blog-date+.page-break+h1 {
+.blog-date + .page-break + h1 {
     margin-top: 0 !important;
 }
 
@@ -154,11 +163,15 @@ a:not(.sidebar a)::after {
         const linkElement = getBlogItemLinkElement(blogItem);
         if (!linkElement) return;
 
-        // Apply href to blog item and remove the link element
+        // Apply the link to the blog item and remove the link element
         const href = linkElement.getAttribute('href');
-        blogItem.style.cursor = 'pointer';
-        blogItem.addEventListener('click', () => window.location.href = href);
         linkElement.style.display = 'none';
+        const anchor = document.createElement('a');
+        anchor.className = 'blog-item-link-wrapper';
+        anchor.href = href;
+        anchor.appendChild(blogItem.cloneNode(true));
+        blogItem.parentElement.appendChild(anchor);
+        blogItem.remove();
     });
 });
 
@@ -275,14 +288,23 @@ a:not(.sidebar a)::after {
 }
 
 .blog-item,
-.blog-item>.blog-item-content {
+.blog-item > .blog-item-content {
     max-height: 300px;
     overflow: hidden;
 }
 
-.blog-item>.blog-item-content {
+.blog-item > .blog-item-content {
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.blog-item-link-wrapper {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.blog-item-link-wrapper::after {
+    content: none !important;
 }
 
 .blog-navigation {
@@ -295,7 +317,7 @@ a:not(.sidebar a)::after {
     margin-bottom: 1em;
 }
 
-.blog-date+.page-break+h1 {
+.blog-date + .page-break + h1 {
     margin-top: 0 !important;
 }
 
@@ -311,11 +333,15 @@ a:not(.sidebar a)::after {
         const linkElement = getBlogItemLinkElement(blogItem);
         if (!linkElement) return;
 
-        // Apply href to blog item and remove the link element
+        // Apply the link to the blog item and remove the link element
         const href = linkElement.getAttribute('href');
-        blogItem.style.cursor = 'pointer';
-        blogItem.addEventListener('click', () => window.location.href = href);
         linkElement.style.display = 'none';
+        const anchor = document.createElement('a');
+        anchor.className = 'blog-item-link-wrapper';
+        anchor.href = href;
+        anchor.appendChild(blogItem.cloneNode(true));
+        blogItem.parentElement.appendChild(anchor);
+        blogItem.remove();
     });
 });
 
