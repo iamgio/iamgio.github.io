@@ -166,12 +166,7 @@ a:not(.sidebar a)::after {
         // Apply the link to the blog item and remove the link element
         const href = linkElement.getAttribute('href');
         linkElement.style.display = 'none';
-        const anchor = document.createElement('a');
-        anchor.className = 'blog-item-link-wrapper';
-        anchor.href = href;
-        anchor.appendChild(blogItem.cloneNode(true));
-        blogItem.parentElement.appendChild(anchor);
-        blogItem.remove();
+        wrapBlogItemWithLink(blogItem, href);
     });
 });
 
@@ -188,7 +183,20 @@ function getBlogItems() {
 function getBlogItemLinkElement(blogItem) {
     return blogItem.querySelector('.blog-item-content').firstChild;
 }
-</script><p></p><div class="page-break" data-hidden=""></div><h1 id="giorgio-garofalo">Giorgio Garofalo</h1><p>Back when I first got access to our family computer at the age of 8,
+
+/**
+ * Wraps the blog item with an anchor element linking to the specified href.
+ * @param {Element} blogItem - The blog item element.
+ * @param {string} href - The URL to link to.
+ */
+function wrapBlogItemWithLink(blogItem, href) {
+    const anchor = document.createElement('a');
+    anchor.className = 'blog-item-link-wrapper';
+    anchor.href = href;
+    anchor.appendChild(blogItem.cloneNode(true));
+    blogItem.parentElement.appendChild(anchor);
+    blogItem.remove();
+}</script><p></p><div class="page-break" data-hidden=""></div><h1 id="giorgio-garofalo">Giorgio Garofalo</h1><p>Back when I first got access to our family computer at the age of 8,
 I was instantly fascinated by the number of things one could do with it.
 Aside from playing <a href="https://en.wikipedia.org/wiki/Full_Tilt!_Pinball">Space Cadet</a>, I was obsessed with a single word: <em><strong>create</strong></em>.</p><p>I used to spend hours googling <em>how to create characters</em>, <em>how to create games</em>,
 <em>how to create websites</em>,
@@ -336,12 +344,7 @@ a:not(.sidebar a)::after {
         // Apply the link to the blog item and remove the link element
         const href = linkElement.getAttribute('href');
         linkElement.style.display = 'none';
-        const anchor = document.createElement('a');
-        anchor.className = 'blog-item-link-wrapper';
-        anchor.href = href;
-        anchor.appendChild(blogItem.cloneNode(true));
-        blogItem.parentElement.appendChild(anchor);
-        blogItem.remove();
+        wrapBlogItemWithLink(blogItem, href);
     });
 });
 
@@ -358,7 +361,20 @@ function getBlogItems() {
 function getBlogItemLinkElement(blogItem) {
     return blogItem.querySelector('.blog-item-content').firstChild;
 }
-</script><div class="container fullwidth blog-navigation"><p><a href="/#blog">Home</a></p></div><span class="blog-date">December 5, 2025</span><div class="page-break" data-hidden=""></div><h1 id="hello-world">Hello, world!</h1><p>This is my first blog post! This blog, as the rest of the website, is built with <a href="https://quarkdown.com">Quarkdown</a>.</p><p>Whenever I feel like writing something about any topic, I&rsquo;ll post it here, be it related to software, thoughts, or anything else that comes to mind.</p></div></div></div>
+
+/**
+ * Wraps the blog item with an anchor element linking to the specified href.
+ * @param {Element} blogItem - The blog item element.
+ * @param {string} href - The URL to link to.
+ */
+function wrapBlogItemWithLink(blogItem, href) {
+    const anchor = document.createElement('a');
+    anchor.className = 'blog-item-link-wrapper';
+    anchor.href = href;
+    anchor.appendChild(blogItem.cloneNode(true));
+    blogItem.parentElement.appendChild(anchor);
+    blogItem.remove();
+}</script><div class="container fullwidth blog-navigation"><p><a href="/#blog">Home</a></p></div><span class="blog-date">December 5, 2025</span><div class="page-break" data-hidden=""></div><h1 id="hello-world">Hello, world!</h1><p>This is my first blog post! This blog, as the rest of the website, is built with <a href="https://quarkdown.com">Quarkdown</a>.</p><p>Whenever I feel like writing something about any topic, I&rsquo;ll post it here, be it related to software, thoughts, or anything else that comes to mind.</p></div></div></div>
 </main>
 <aside id="margin-area-right" class="margin-area"></aside>
 </body>
