@@ -4,11 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const linkElement = getBlogItemLinkElement(blogItem);
         if (!linkElement) return;
 
-        // Apply href to blog item and remove the link element
+        // Apply the link to the blog item and remove the link element
         const href = linkElement.getAttribute('href');
-        blogItem.style.cursor = 'pointer';
-        blogItem.addEventListener('click', () => window.location.href = href);
         linkElement.style.display = 'none';
+        const anchor = document.createElement('a');
+        anchor.className = 'blog-item-link-wrapper';
+        anchor.href = href;
+        anchor.appendChild(blogItem.cloneNode(true));
+        blogItem.parentElement.appendChild(anchor);
+        blogItem.remove();
     });
 });
 
