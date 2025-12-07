@@ -7,12 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Apply the link to the blog item and remove the link element
         const href = linkElement.getAttribute('href');
         linkElement.style.display = 'none';
-        const anchor = document.createElement('a');
-        anchor.className = 'blog-item-link-wrapper';
-        anchor.href = href;
-        anchor.appendChild(blogItem.cloneNode(true));
-        blogItem.parentElement.appendChild(anchor);
-        blogItem.remove();
+        wrapBlogItemWithLink(blogItem, href);
     });
 });
 
@@ -28,4 +23,18 @@ function getBlogItems() {
  */
 function getBlogItemLinkElement(blogItem) {
     return blogItem.querySelector('.blog-item-content').firstChild;
+}
+
+/**
+ * Wraps the blog item with an anchor element linking to the specified href.
+ * @param {Element} blogItem - The blog item element.
+ * @param {string} href - The URL to link to.
+ */
+function wrapBlogItemWithLink(blogItem, href) {
+    const anchor = document.createElement('a');
+    anchor.className = 'blog-item-link-wrapper';
+    anchor.href = href;
+    anchor.appendChild(blogItem.cloneNode(true));
+    blogItem.parentElement.appendChild(anchor);
+    blogItem.remove();
 }
