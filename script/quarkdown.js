@@ -174,13 +174,17 @@
       }
     };
   }
+  function getHeadings() {
+    const selection = document.querySelectorAll("h1, h2, h3");
+    return Array.from(selection).filter((header) => !header.hasAttribute("data-decorative"));
+  }
   function populateNavigationItems(sidebarList) {
     let currentActiveListItem = null;
     const getCurrentActiveItem = () => currentActiveListItem;
     const setCurrentActiveItem = (item) => {
       currentActiveListItem = item;
     };
-    document.querySelectorAll("h1, h2, h3").forEach((header) => {
+    getHeadings().forEach((header) => {
       const listItem = createNavigationItem(header);
       sidebarList.appendChild(listItem);
       const checkForActive = createActiveStateChecker(

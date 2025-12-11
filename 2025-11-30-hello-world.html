@@ -84,6 +84,11 @@ h3 {
 
 a {
     text-decoration: none !important;
+    transition: opacity 0.3s ease;
+}
+
+a:not(.sidebar a):hover {
+    opacity: 0.75;
 }
 
 a:not(.sidebar a)::after {

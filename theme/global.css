@@ -78,6 +78,10 @@ body.quarkdown.quarkdown-paged .pagedjs_area {
   text-align: var(--qd-horizontal-alignment-local);
   text-align-last: center;
 }
+.quarkdown formula {
+  text-align: initial;
+  text-align-last: initial;
+}
 
 .quarkdown-slides {
   --qd-horizontal-alignment-global: center;
