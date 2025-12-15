@@ -742,15 +742,30 @@ details > summary + p,
   text-align: start;
 }
 .quarkdown nav ol {
+  flex-basis: 100%;
+  width: 100%;
   list-style-position: inside;
   margin: 0 0 0 1em;
 }
 .quarkdown nav ol:not(ol ol) {
   padding-left: 0;
 }
-.quarkdown nav li a::after {
-  content: target-counter(attr(href), page);
-  float: right;
+.quarkdown nav li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.quarkdown nav li a {
+  display: flex;
+  flex-grow: 1;
+  align-items: baseline;
+}
+.quarkdown nav li a .toc-page-number {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.quarkdown nav li a .toc-page-number:empty, .quarkdown nav li a .toc-page-number[data-empty] {
+  display: none;
 }
 
 .quarkdown-slides nav:not(.pdf-page nav) {
