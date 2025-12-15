@@ -6,7 +6,7 @@ This concept was totally new to me, since I was used to finishing something and 
 likely influenced by my art background, where a drawing or painting is considered "finished" when it's done, and you won't ever go back to it.
 
 By the time I finished high school, I gradually started appreciating the idea of polishing something and seeing it evolve:
-I had a few active projects by then, that let me gather tiny communities and gain my first dozen or so stars on GitHub
+I had a few active projects by then, that let me build tiny communities and gain my first dozen or so stars on GitHub
 I realized it was not about writing code: I fell in love with the idea of making something that people would use,
 carefully writing documentation in a language that I wasn't even fluent in, getting feedback and evolving the project over time.
 
@@ -22,17 +22,17 @@ programming is strict, rigid, structured, it *must not* be art. Art is freeform,
 
 Years later, I still vividly remember that moment: it was the first time someone challenged my view on my biggest passion.
 I didn't get the job--I did get an offer, but I wasn't sure that was the philosophy I wanted to embrace, and turned it down.
-I've thought about it a lot since then, it made me reflect and tilted my perspective, although I don't fully agree with him.
+I've thought about it a lot since then, it made me reflect and shifted my perspective, although I don't fully agree with him.
 
-That same year, it was time to write my bachelor's thesis. It was quite straightforward: chose my favorite professor, prof. [Mirko Viroli](https://www.unibo.it/sitoweb/mirko.viroli),
-and emailed him asking for a topic, mentioning I'm interested in either utility software or programming languages (*very* distant fields!).
+That same year, it was time to write my bachelor's thesis. It was quite straightforward: I chose my favorite professor, prof. [Mirko Viroli](https://www.unibo.it/sitoweb/mirko.viroli),
+and emailed him asking for a topic, mentioning I was interested in either utility software or programming languages (*very* distant fields!).
 It didn't take him longer than 10 minutes to reply, complaining about LaTeX. He wanted a new language to write his slides, and proposed I build it.
 
 I still wonder if he knew about [Typst](https://typst.app/), but I blindly accepted the challenge, unaware that I was getting into the black hole of typesetting.  
 I went head-first and within two days I had already designed its syntax: it had to be easy to pick up, so my first choice was building on top of the well-known Markdown.
 On the third day I came up with its name: *Quarkdown*--oh boy I love it.
 
-Months go by, and development is progressing nicely while I'm learning a lot, and occasionally swearing at regex patterns, but that's part of the journey.
+Months went by, and development was progressing nicely while I'm learning a lot, and occasionally swearing at regex patterns, but that's part of the journey.
 Every now and then, the big man's words would echo: *programming is not art*. I was applying what I'd learned: strict structure, clear rules, no room for ambiguity.
 I also noticed the software didn't have to stop at making slides. I mentioned it to the professor, and he emailed me back: *"Generalizing is costly ;)"*.
 I supposed he meant not to overcomplicate it, but my stubbornness took over, and I kept going.
@@ -41,7 +41,7 @@ In this exact moment, the post you're reading was written in Quarkdown.
 
 At that point, I assumed it was time to spread the word: took good care of the documentation, and showcased it on Reddit,
 where it got a decent amount of attention. A few people reached out to me, praising the idea and suggesting improvements,
-while some others didn't wait to point out how needless it was, when there was already good competition in the field. Again, my stubborness kept me going.
+while some others didn't wait to point out how needless it was, when there was already good competition in the field. Again, my stubbornness kept me going.
 
 !(60%)[Dissertation](https://github.com/user-attachments/assets/a4024f79-6373-4431-8145-77e658c69a9d)
 
@@ -49,7 +49,7 @@ In October 2024 I defended my [thesis](https://amslaurea.unibo.it/id/eprint/3369
 while the repo had hit 200-ish stars. To me, it felt like I finally made it. Little did I know what was coming next.
 
 Of course, as I learned during my youth, it wasn't the end of the journey. I was determined to keep improving Quarkdown, and that's what I did.
-It's June 3, 2025 that changed my life. A massive traffic spike hit the repo, I would reload the page every few seconds to see the star count going up and up.
+It was June 3, 2025, that changed my life. A massive traffic spike hit the repo, I would reload the page every few seconds to see the star count going up and up.
 Within a day, it had 2000. The next day, 4000. It was insane. I had people from all over the world reaching out to me and praising my work.  
 Where was all this coming from? Turns out someone I never heard of, who goes by `asicsp`, had [posted](https://news.ycombinator.com/item?id=44167592) about it on Hacker News,
 and it got to number one on the front page.
@@ -58,13 +58,13 @@ and it got to number one on the front page.
 
 At the end of the same month, I received a message from Dave, founder of [Falconer](https://falconer.com), a startup based in San Francisco.
 We hopped on a quick call, and he offered me an on-site position. Imagine my reaction: a student from Italy, with little professional experience, getting an offer from a Silicon Valley startup.
-I was over the moon. Told my family about it, and they were warning me: "Why would they want a student from the other side of the world?", my sister genuinely asked.
+I was over the moon. I told my family about it, and they were warning me: "Why would they want a student from the other side of the world?", my sister genuinely asked.
 I understood her concerns. I myself was scared: the company was so new it wasn't even on Google Maps.
 But still, I was stubborn enough to have a little faith and I reassured them. Four months later, I finally got my visa and moved to San Francisco.
 
 Today, we're close to Christmas 2025, and I've been here for a month.
 It has been a wild ride so far and I'm loving every bit of it--the team, the environment, the general vibe of the city,
-and I can't believe how far I've come since that interview years ago. A guy stuttering his way through his background, to a software engineer in California.
+and I can't believe how far I've come since that interview years ago. From a guy stuttering his way through his background, to a software engineer in California.
 
 If you made it this far, keep believing in what you do.
 
