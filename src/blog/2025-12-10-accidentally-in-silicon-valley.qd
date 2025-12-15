@@ -26,8 +26,7 @@ I've thought about it a lot since then, it made me reflect and shifted my perspe
 
 That same year, it was time to write my bachelor's thesis. It was quite straightforward: I chose my favorite professor, prof. [Mirko Viroli](https://www.unibo.it/sitoweb/mirko.viroli),
 and emailed him asking for a topic, mentioning I was interested in either utility software or programming languages (*very* distant fields!).
-It didn't take him longer than 10 minutes to reply, complaining about LaTeX. He wanted a new language to write his slides, and proposed I build it.
-
+It didn't take him longer than 10 minutes to reply, complaining about LaTeX. He wanted a new language to write his slides, and proposed I build it.  
 I still wonder if he knew about [Typst](https://typst.app/), but I blindly accepted the challenge, unaware that I was getting into the black hole of typesetting.  
 I went head-first and within two days I had already designed its syntax: it had to be easy to pick up, so my first choice was building on top of the well-known Markdown.
 On the third day I came up with its name: *Quarkdown*--oh boy I love it.
