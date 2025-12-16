@@ -17,6 +17,8 @@
 
 .font heading:{GoogleFonts:Outfit} 
 
+.paragraphstyle lineheight:{1.6}
+
 .cssproperties
   - background-color: #fefcf7
   - main-color: #3f2816
