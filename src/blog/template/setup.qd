@@ -1,7 +1,7 @@
 .include {../../setup.qd}
 
 .function {blogpost}
-    title? date?:
+    date?:
     .container classname:{blog-navigation} fullwidth:{yes}
         .row gap:{12px} 
             Giorgio Garofalo
@@ -13,4 +13,4 @@
     .if {.date::isnone::not}
         .date::text classname:{blog-date}
         
-    #! .title::otherwise fallback:{Unnamed}
+    #! .docname

@@ -1,5 +1,6 @@
+.docname {I accidentally ended up in Silicon Valley}
 .include {template/setup.qd}
-.blogpost title:{I accidentally ended up in Silicon Valley} date:{December 10, 2025}
+.blogpost date:{December 10, 2025}
 
 As I grew up, I began getting used to the idea of maintaining my projects over time.
 This concept was totally new to me, since I was used to finishing something and moving on to the next thing,

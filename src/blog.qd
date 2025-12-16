@@ -7,4 +7,4 @@
             .container classname:{blog-item-content} 
                 .path::subdocument label:{.path::filename extension:{no}}
 
-                .include {.path}
+                .include {.path} sandbox:{subdocument}

@@ -1,5 +1,6 @@
+.docname {Hello, world!}
 .include {template/setup.qd}
-.blogpost title:{Hello, world!} date:{December 5, 2025}
+.blogpost date:{December 5, 2025}
 
 This is my first blog post! This blog, as the rest of the website, is built with [Quarkdown](https://quarkdown.com).
 You can find the source code for this website on [GitHub](https://github.com/iamgio/iamgio.github.io).
