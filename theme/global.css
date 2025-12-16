@@ -30,12 +30,27 @@ body.quarkdown.quarkdown-plain > aside#margin-area-right {
   margin-left: var(--aside-inner-margin);
 }
 @media screen and (max-width: 800px), print and (max-width: 1000px) {
+  body.quarkdown.quarkdown-plain {
+    flex-direction: column;
+    padding: 0 16px;
+  }
+  body.quarkdown.quarkdown-plain > * {
+    font-size: 1.1em;
+  }
   body.quarkdown.quarkdown-plain > main {
     width: 100%;
   }
-  body.quarkdown.quarkdown-plain > aside#margin-area-left, body.quarkdown.quarkdown-plain > aside#margin-area-right:empty {
-    max-width: 0;
-    --aside-inner-margin: 8px;
+  body.quarkdown.quarkdown-plain > aside#margin-area-left {
+    display: none;
+  }
+  body.quarkdown.quarkdown-plain > aside#margin-area-right {
+    --aside-inner-margin: 0;
+    max-width: none;
+    width: auto;
+    margin-top: 16px;
+  }
+  body.quarkdown.quarkdown-plain > aside#margin-area-right .footnote-definition {
+    margin-top: 0.5em !important;
   }
 }
 body.quarkdown.quarkdown-slides .reveal .slides {
