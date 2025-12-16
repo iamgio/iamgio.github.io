@@ -13,7 +13,7 @@ body.quarkdown.quarkdown-plain {
   margin: 32px 0;
 }
 body.quarkdown.quarkdown-plain > main {
-  width: 100%;
+  width: min(100%, 90ch);
   column-count: var(--qd-column-count);
 }
 body.quarkdown.quarkdown-plain > aside {
@@ -30,7 +30,10 @@ body.quarkdown.quarkdown-plain > aside#margin-area-right {
   margin-left: var(--aside-inner-margin);
 }
 @media screen and (max-width: 800px), print and (max-width: 1000px) {
-  body.quarkdown.quarkdown-plain aside#margin-area-left, body.quarkdown.quarkdown-plain aside#margin-area-right:empty {
+  body.quarkdown.quarkdown-plain > main {
+    width: 100%;
+  }
+  body.quarkdown.quarkdown-plain > aside#margin-area-left, body.quarkdown.quarkdown-plain > aside#margin-area-right:empty {
     max-width: 0;
     --aside-inner-margin: 8px;
   }
