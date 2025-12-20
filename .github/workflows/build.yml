@@ -13,8 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: quarkdown-labs/setup-quarkdown@v1
-        with:
-          quarkdown-version: devbuild # TODO use stable when v1.13 is released
       
       - name: Build
         run: quarkdown c src/main.qd --out output --clean
