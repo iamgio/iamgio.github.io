@@ -26,3 +26,7 @@
   - link-color: #bb4110
 
 .read {stylesheets/style.css}::css
+
+<!-- Cloudflare Web Analytics -->
+.html
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "686c97ccb1484005a79531ba921021ac"}'></script>
