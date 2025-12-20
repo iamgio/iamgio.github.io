@@ -24,16 +24,16 @@ That same year, it was time to write my bachelor's thesis. It was quite straight
 and emailed him asking for a topic, mentioning I was interested in either utility software or programming languages (*very* distant fields!).
 It didn't take him longer than 10 minutes to reply, complaining about the complexity of LaTeX: he wanted a new simpler language to write his slides in, and proposed I build it,
 with prof. [Gianluca Aguzzi](https://www.unibo.it/sitoweb/gianluca.aguzzi) as my co-supervisor.  
-I still wonder if he knew about [Typst](https://typst.app/), but I blindly accepted the challenge, unaware that I was getting into the black hole of typesetting.  
+I still wonder if he knew about Typst, but I blindly accepted the challenge, unaware that I was getting into the black hole of typesetting.  
 I went head-first and within two days I had already designed its syntax: it had to be easy to pick up, so my first choice was building on top of the well-known Markdown.
 On the third day I came up with its name: [*Quarkdown*](https://github.com/iamgio/quarkdown)--oh boy I love it.
 
 Months went by, and development was progressing nicely while I was learning a lot, and occasionally swearing at regex patterns, but that's part of the journey.
 Every now and then, the big man's words would echo: *programming is not art*. I was applying what I'd learned: strict structure, clear rules, no room for ambiguity.
-I also noticed the software didn't have to stop at making slides. I mentioned it to the professor, and he emailed me back: *"Generalizing is costly ;)"*.
+I also noticed the software didn't have to stop at making slides. I mentioned it to the professor, who emailed me back: *"Generalizing is costly"*.
 I assumed he meant not to overcomplicate it, but my stubbornness took over, and I kept going.
 Within a few weeks, Quarkdown could effortlessly produce slides, articles and books.
-In this exact moment, the post you're reading was written in Quarkdown.
+At this exact moment, the post you're reading was written in Quarkdown.
 
 At that point, I assumed it was time to spread the word: took good care of the documentation, and showcased it on Reddit,
 where it got a decent amount of attention. A few people reached out to me, praising the idea and suggesting improvements,
