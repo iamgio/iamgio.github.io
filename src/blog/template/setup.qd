@@ -1,4 +1,5 @@
 .include {../../setup.qd}
+.docdescription {Check out Giorgio Garofalo's blog post}
 
 .function {blogpost}
     date?:
