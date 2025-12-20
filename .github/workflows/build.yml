@@ -21,6 +21,9 @@ jobs:
         id: output-dir
         run: echo "dir=$(ls -d output/*/)" >> $GITHUB_OUTPUT
 
+      - name: Copy static files
+        run: cp -r static/ ${{ steps.output-dir.outputs.dir }}static/
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
