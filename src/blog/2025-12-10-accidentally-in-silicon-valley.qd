@@ -2,14 +2,10 @@
 .include {template/setup.qd}
 .blogpost date:{December 10, 2025}
 
-As I grew up, I began getting used to the idea of maintaining my projects over time.
-This concept was totally new to me, since I was used to finishing something and moving on to the next thing,
-likely influenced by my art background, where a drawing or painting is considered "finished" when it's done, and you won't ever go back to it.
-
-By the time I finished high school, I gradually started appreciating the idea of polishing something and seeing it evolve:
-I had a few active projects by then, that let me build tiny communities and gain my first dozen or so stars on GitHub.  
-I realized it was not about writing code: I fell in love with the idea of making something that people would use,
-carefully writing documentation in a language that I wasn't even fluent in, getting feedback and evolving the project over time.
+By the time I finished high school, I gradually started appreciating the idea of polishing my projects and seeing them evolve over time:
+I had a few active projects by then, that let me build tiny communities. I realized it was not about writing code: I fell in love with the idea of making something that people would use,
+carefully writing documentation in a language that I wasn't even fluent in at the time, getting feedback, and iterating on it.
+Coming from an art background, where a work is done once it's on display, this was a new mindset for me.
 
 It was when I was looking for my first internship that I went to a local software house, to have an interview with the founder,
 a middle-aged Italian man, a big guy with a majestic beard.
@@ -24,12 +20,13 @@ Years later, I still vividly remember that moment: it was the first time someone
 I didn't get the job--I did get an offer, but I wasn't sure that was the philosophy I wanted to embrace, and turned it down.
 I've thought about it a lot since then, it made me reflect and shifted my perspective, although I don't fully agree with him.
 
-That same year, it was time to write my bachelor's thesis. It was quite straightforward: I chose my favorite professor, prof. [Mirko Viroli](https://www.unibo.it/sitoweb/mirko.viroli),
+That same year, it was time to write my bachelor's thesis. It was quite straightforward: I chose the professor that taught me the most about software engineering and its best practices as my supervisor, prof. [Mirko Viroli](https://www.unibo.it/sitoweb/mirko.viroli),
 and emailed him asking for a topic, mentioning I was interested in either utility software or programming languages (*very* distant fields!).
-It didn't take him longer than 10 minutes to reply, complaining about LaTeX. He wanted a new language to write his slides, and proposed I build it.  
+It didn't take him longer than 10 minutes to reply, complaining about the complexity of LaTeX: he wanted a new simpler language to write his slides in, and proposed I build it,
+with prof. [Gianluca Aguzzi](https://www.unibo.it/sitoweb/gianluca.aguzzi) as my co-supervisor.  
 I still wonder if he knew about [Typst](https://typst.app/), but I blindly accepted the challenge, unaware that I was getting into the black hole of typesetting.  
 I went head-first and within two days I had already designed its syntax: it had to be easy to pick up, so my first choice was building on top of the well-known Markdown.
-On the third day I came up with its name: *Quarkdown*--oh boy I love it.
+On the third day I came up with its name: [*Quarkdown*](https://github.com/iamgio/quarkdown)--oh boy I love it.
 
 Months went by, and development was progressing nicely while I was learning a lot, and occasionally swearing at regex patterns, but that's part of the journey.
 Every now and then, the big man's words would echo: *programming is not art*. I was applying what I'd learned: strict structure, clear rules, no room for ambiguity.
@@ -45,9 +42,9 @@ while some others were quick to point out how needless it was, when there was al
 !(60%)[Dissertation](https://github.com/user-attachments/assets/a4024f79-6373-4431-8145-77e658c69a9d)
 
 In October 2024 I defended my [thesis](https://amslaurea.unibo.it/id/eprint/33690/1/garofalo_giorgio_tesi.pdf), and received a standing ovation
-while the repo had hit 200-ish stars. To me, it felt like I finally made it. Little did I know what was coming next.
+from the audience. To me, it felt like I finally made it. Little did I know what was coming next.
 
-Of course, as I learned during my youth, it wasn't the end of the journey. I was determined to keep improving Quarkdown, and that's what I did.
+Of course, as I learned during my youth, it wasn't the end of the journey: the project had to be polished further. I was determined to keep improving Quarkdown, and that's what I did.
 It was June 3, 2025, that changed my life. A massive traffic spike hit the repo, I would reload the page every few seconds to see the star count going up and up.
 Within a day, it had 2000. The next day, 4000. It was insane. I had people from all over the world reaching out to me and praising my work.  
 Where was all this coming from? Turns out someone I never heard of, who goes by `asicsp`, had [posted](https://news.ycombinator.com/item?id=44167592) about it on Hacker News,
