@@ -4,8 +4,13 @@
   --qd-background-color: white;
   --qd-main-color: hsl(0, 5%, 10%);
   --qd-link-color: hsl(0, 100%, 33%);
+  --qd-nested-navigation-line-color: rgba(0, 0, 0, .2);
   --qd-color-on-primary: var(--qd-main-color);
   --qd-mermaid-node-background-color: var(--qd-background-color);
+  --qd-docs-header-background-color: rgb(246, 247, 249);
+  --qd-docs-separator-border-color: rgb(237, 238, 243);
+  --qd-docs-search-border-color: rgb(193, 195, 200);
+  --qd-docs-search-focused-border: var(--qd-main-color);
 }
 
 .quarkdown blockquote {
@@ -13,12 +18,14 @@
 }
 .quarkdown pre code {
   background-color: transparent;
-  padding: 0;
+  border: 1px solid var(--qd-main-color-muted);
+}
+.quarkdown.quarkdown-paged pre code {
+  padding-left: 0;
+  padding-right: 0;
+  border: none;
 }
 .quarkdown.quarkdown-slides blockquote {
-  box-shadow: none;
-}
-.quarkdown.quarkdown-slides pre {
   box-shadow: none;
 }
 .quarkdown .hljs-ln td:first-child {
@@ -26,9 +33,6 @@
 }
 .quarkdown .box.callout {
   --box-header-background-color: rgba(0, 0, 0, .03);
-}
-.quarkdown nav ol ol {
-  border-color: rgba(0, 0, 0, 0.2);
 }
 .quarkdown .mermaid .plot .line-plot-3 path {
   stroke: lightskyblue;

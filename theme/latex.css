@@ -115,22 +115,34 @@
 .quarkdown nav a {
   text-decoration: none;
 }
-.quarkdown nav ol {
+.quarkdown nav ul, .quarkdown nav ol {
   margin: 0;
   padding-left: 0;
 }
-.quarkdown nav > ol ol {
+.quarkdown nav > ul ul, .quarkdown nav > ul ol, .quarkdown nav > ol ul, .quarkdown nav > ol ol {
   padding-left: 2rem;
 }
-.quarkdown nav > ol > li {
+.quarkdown nav > ul > li, .quarkdown nav > ol > li {
   margin-top: 20px;
 }
-.quarkdown nav > ol > li > a {
+.quarkdown nav > ul > li > a:is(nav[data-role=table-of-contents] a), .quarkdown nav > ol > li > a:is(nav[data-role=table-of-contents] a) {
   font-weight: bold;
 }
 .quarkdown nav li {
   margin-top: 7px;
   list-style-type: none; /* Only numbering-generated bullets are shown */
+}
+.quarkdown nav:is(.quarkdown-docs nav) > ul, .quarkdown nav:is(.quarkdown-docs nav) > ol {
+  margin-left: 0;
+}
+.quarkdown nav:is(.quarkdown-docs nav) > ul ul, .quarkdown nav:is(.quarkdown-docs nav) > ul ol, .quarkdown nav:is(.quarkdown-docs nav) > ol ul, .quarkdown nav:is(.quarkdown-docs nav) > ol ol {
+  padding-left: 1.5rem;
+}
+.quarkdown nav:is(.quarkdown-docs nav) > ul > li, .quarkdown nav:is(.quarkdown-docs nav) > ol > li {
+  margin-top: 4px;
+}
+.quarkdown nav:is(.quarkdown-docs nav) > ul > li a:is(nav[data-role=table-of-contents] a), .quarkdown nav:is(.quarkdown-docs nav) > ol > li a:is(nav[data-role=table-of-contents] a) {
+  font-weight: normal;
 }
 .quarkdown [data-location]:is(h1, h2, h3, h4, h5, h6, li)::before {
   padding-right: 0.85rem;
