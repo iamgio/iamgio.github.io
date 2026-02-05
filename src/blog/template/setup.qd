@@ -9,7 +9,7 @@
             
             •
 
-            [Home](/#blog)
+            [Home](/)
 
     .if {.date::isnone::not}
         .date::text classname:{blog-date}

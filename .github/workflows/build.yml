@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: quarkdown-labs/setup-quarkdown@v1
+        with:
+          quarkdown-version: 'devbuild'
       
       - name: Build
         run: quarkdown c src/main.qd --out output --clean
