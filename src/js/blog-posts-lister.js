@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const blogItems = document.querySelectorAll('.blog-item');
-    console.log(`Found ${blogItems.length} blog items`);
     Array.from(blogItems).forEach(blogItem => {
         const linkElement = getBlogItemLinkElement(blogItem);
         if (!linkElement) return;
@@ -47,7 +46,6 @@ function wrapBlogItemWithLink(blogItem, href) {
  * Maps h1-h4 heading levels to h3-h6 within the blog item content.
  */
 function reduceHeadingLevels(blogItem) {
-    console.log('Reducing heading levels in blog item');
     const increase = 2;
     const minLevel = 1;
     const maxLevel = 4;
@@ -55,7 +53,6 @@ function reduceHeadingLevels(blogItem) {
     headings.forEach(heading => {
         const level = parseInt(heading.tagName[1]);
         if (level >= minLevel && level <= maxLevel) {
-            console.log(`Reducing heading level: ${heading.tagName} to h${level + increase}`);
             const newHeading = document.createElement(`h${level + increase}`);
             newHeading.innerHTML = heading.innerHTML;
             Array.from(heading.attributes).forEach(attr => {
