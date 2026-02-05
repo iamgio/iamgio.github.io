@@ -22,7 +22,7 @@ a:not(.sidebar a):hover {
     opacity: 0.75;
 }
 
-a:not(.sidebar a)::after {
+a:not(.sidebar a, .blog-item-link-wrapper)::after {
     font-family: 'bootstrap-icons', monospace;
     font-weight: bold;
     margin-inline-start: 4px;
