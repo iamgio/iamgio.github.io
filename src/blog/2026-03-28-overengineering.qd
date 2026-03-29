@@ -43,10 +43,11 @@ I learned about the following chart in my uni classes, and I wish I had seen it 
 > Note: It's worth mentioning that, when referring to *overengineering*, we're in the context of software architecture.
 > We're not discussing it in the sense of distributed systems and microservices, as that isn't my field of expertise.
 
-As an advocate of clean code, I often ask myself whether I'm overengineering things.
+As an advocate for clean code, I often ask myself whether I'm overengineering things.
 Whenever I believe I've crossed that line, I'm proven wrong as soon as I need to add new functionality on top of what I built earlier.
-At that point, I realize the design choices I'd made were actually anticipating change, not overengineering.
-Even without foreseeing the exact change or having any gut feeling about how the software would evolve 6 months down the line, those choices still turn out to be the right ones.
+
+At that point, I realize the design choices I'd made were actually anticipating change:
+even without foreseeing the exact change or having any gut feeling about how the software would evolve 6 months down the line, those choices still turn out to be the right ones.
 
 ### A practical example
 
