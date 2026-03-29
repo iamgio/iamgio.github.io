@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="Quarkdown">
+    <meta charset="UTF-8">
+    <meta name="description" content="Check out Giorgio Garofalo's blog post">
+    <meta name="keywords" content="Giorgio Garofalo, iamgio, quarkdown, software engineering, development">
+    <meta name="author" content="Giorgio Garofalo, Giorgio Garofalo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="quarkdown:root-path" content="..">
+    <title>The blurred line between overengineering and anticipating change</title>
+    <script src="../script/quarkdown.js"></script>
+    <script>const capabilities = window.quarkdownCapabilities</script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../theme/theme.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.9.0/highlightjs-line-numbers.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+    <link href="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.css" rel="stylesheet">
+    <script>capabilities.code = true;</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>capabilities.mermaid = true;</script>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+body {
+    --qd-heading-custom-font: 'Outfit', 'Outfit';}
+body {
+    --qd-line-height: 1.600000023841858;}
+</style>
+    <script>prepare(new PlainDocument());</script>
+<template id="sidebar-template"><nav class="sidebar" role="doc-toc"><ol><li data-target-id="a-shallow-dive-into-software-quality" data-depth="2"><a href="#a-shallow-dive-into-software-quality">A shallow dive into software quality</a></li><li data-target-id="overengineering-is-a-myth" data-depth="2"><a href="#overengineering-is-a-myth">Overengineering is a myth</a><ol><li data-target-id="a-practical-example" data-depth="3"><a href="#a-practical-example">A practical example</a></li></ol></li><li data-target-id="takeaway" data-depth="2"><a href="#takeaway">Takeaway</a></li></ol></nav>
+</template>  </head>
+  <body class="quarkdown quarkdown-plain">
+    <aside class="margin-area" id="margin-area-left"></aside>
+    <main><p></p><style data-hidden="">:root { --qd-background-color: #fefcf7 !important; --qd-main-color: #3f2816 !important; --qd-heading-color: #4f321c !important; --qd-heading-font-size: 1.2em !important; --qd-link-color: #bb4110 !important; }</style><style data-hidden="">h1 {
+    font-size: 3.5rem !important;
+}
+
+h2 {
+    font-size: 2.5rem !important;
+}
+
+h3 {
+    font-size: 2rem !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a:not(.sidebar a) {
+    transition: opacity 0.3s ease !important;
+}
+
+a:not(.sidebar a):hover {
+    opacity: 0.75 !important;
+}
+
+a:not(.sidebar a, .blog-item-link-wrapper)::after {
+    font-family: 'bootstrap-icons', monospace !important;
+    font-weight: bold !important;
+    margin-inline-start: 4px !important;
+    content: "\F470" !important;
+    vertical-align: middle !important;
+    position: relative !important;
+    top: -1px !important;
+}
+
+/* Blog */
+
+.blog-container {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.blog-item {
+    display: block !important;
+    margin-top: 2rem !important;
+    padding: 2rem !important;
+    border-radius: 8px !important;
+    --shadow-color: color-mix(in srgb, var(--qd-heading-color) 15%, transparent) !important;
+    border: 1px solid var(--shadow-color) !important;
+    box-shadow: 0 20px 48px var(--shadow-color) !important;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.blog-item:hover {
+    --shadow-color: color-mix(in srgb, var(--qd-heading-color) 25%, transparent) !important;
+    border-color: var(--shadow-color) !important;
+    box-shadow: 0 24px 60px var(--shadow-color) !important;
+}
+
+.blog-item .blog-navigation {
+    display: none !important;
+}
+
+.blog-item,
+.blog-item > .blog-item-content {
+    max-height: 300px !important;
+    overflow: hidden !important;
+}
+
+.blog-item > .blog-item-content {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%) !important;
+}
+
+.blog-item-link-wrapper {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.blog-item-link-wrapper::after {
+    content: none !important;
+}
+
+.blog-navigation {
+    margin-bottom: 2em !important;
+}
+
+.blog-date {
+    font-size: 0.9em !important;
+    opacity: 0.7 !important;
+    margin-bottom: 1em !important;
+}
+
+.blog-date + h1,
+.blog-date + h3 {
+    margin-top: 0 !important;
+}
+
+@media (min-width: 800px) {
+    .blog-item {
+        margin-left: -2rem !important;
+        padding: 2rem !important;
+        width: calc(100% + 4rem) !important;
+    }
+}</style><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "686c97ccb1484005a79531ba921021ac"}'></script><div class="container fullwidth blog-navigation"><div style="justify-content: flex-start; align-items: center; column-gap: 12.0px;" class="stack stack-row"><p>Giorgio Garofalo</p><p>•</p><p><a href="/">Home</a></p></div></div><span class="blog-date">March 28, 2026</span><h1 id="the-blurred-line-between-overengineering-and-anticipating-change" data-decorative="">The blurred line between overengineering and anticipating change</h1><p>From the rise of personal computers up to the last decade, our hardware was so limited that engineers&rsquo; main challenge was letting everything
+fit in and squeezing every single transistor of those chips that now we perceive as prehistoric.
+To this day I&rsquo;m still mind-boggled by the optimizations video games came up with between the late 90&rsquo;s and early 2000&rsquo;s:
+to name a few, <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">Quake&rsquo;s fast inverse square root</a> and <a href="https://arstechnica.com/gaming/2021/09/war-stories-how-crash-bandicoot-hacked-the-original-playstation/">Crash Bandicoot literally hacking the PS1</a> to swap data faster.</p><p>However, times change, and software follows: with engineers no longer needing to leverage low-level tricks to achieve the impossible,
+the focus shifted towards robust, maintainable, predictive, and automatically-tested software.</p><h2 id="a-shallow-dive-into-software-quality">A shallow dive into software quality</h2><p>When talking about good code, we typically mean code that&rsquo;s easy to pick up, understand, and change,
+and that follows the software engineering principles, that include:</p><ul><li>Abstraction: hiding complexity behind a simple interface.</li><li>Modularity: organizing into independent components.</li><li>Separation of concerns: dividing into areas of functionality.</li><li>Anticipation of change: designing to accommodate future modifications. <br />
+This is my favorite aspect of software design and the main focus of this post.</li></ul><p>When you&rsquo;re kicking off a new project, it&rsquo;s tempting to just start coding and get things done quickly.
+Following these principles can feel like an unnecessary burden, but that&rsquo;s where things usually backfire:
+after the initial excitement of dozens of new features, the codebase becomes a tangled mess,
+and each new feature takes more and more time to implement, as you navigate through your delicious spaghetti code.</p><p>I learned about the following chart in my uni classes, and I wish I had seen it sooner:</p><figure id="figure-1"><pre class="mermaid">xychart-beta
+	x-axis &quot;Time (days)&quot;
+	y-axis &quot;Number of features shipped&quot;
+	line [0.0, 6.931471824645996, 10.986123085021973, 13.862943649291992, 16.094379425048828, 17.91759490966797, 19.4591007232666, 20.794414520263672, 21.972246170043945, 23.02585220336914, 23.978954315185547, 24.84906768798828, 25.649492263793945, 26.390573501586914, 27.080501556396484, 27.725887298583984, 28.332134246826172, 28.903717041015625, 29.44438934326172, 29.95732307434082, 30.44522476196289, 30.910425186157227, 31.354942321777344, 31.78053855895996, 32.188758850097656, 32.580963134765625, 32.958370208740234, 33.322044372558594, 33.67295837402344, 34.0119743347168, 34.33987045288086, 34.6573600769043, 34.9650764465332, 35.26360321044922, 35.55348205566406, 35.83518981933594, 36.10917663574219, 36.37586212158203, 36.635616302490234, 36.8887939453125, 37.135719299316406, 37.3766975402832, 37.612003326416016, 37.841896057128906, 38.066627502441406, 38.286415100097656, 38.5014762878418, 38.71200942993164, 38.9182014465332, 39.12023162841797, 39.31825637817383, 39.51243591308594, 39.702919006347656, 39.88983917236328, 40.073333740234375, 40.253517150878906, 40.430511474609375, 40.60443115234375, 40.77537536621094, 40.94344711303711, 41.10873794555664, 41.27134323120117, 41.43134689331055, 41.588829040527344, 41.743873596191406, 41.896549224853516, 42.04692840576172, 42.19507598876953, 42.341064453125, 42.48495101928711, 42.626800537109375, 42.76666259765625, 42.90459442138672, 43.040653228759766, 43.17488098144531, 43.307334899902344, 43.438053131103516, 43.56708908081055, 43.69447708129883, 43.82026672363281, 43.94449234008789, 44.06719207763672, 44.18840408325195, 44.30816650390625, 44.426513671875, 44.54347229003906, 44.659080505371094, 44.77336883544922, 44.8863639831543, 44.99809646606445, 45.10859680175781, 45.21788787841797, 45.32599639892578, 45.43294906616211, 45.53876876831055, 45.64348220825195, 45.747108459472656, 45.84967803955078, 45.95119857788086, 46.05170440673828]
+	line [0.09090909361839294, 0.7272727489471436, 2.454545497894287, 5.818181991577148, 11.363636016845703, 19.636363983154297, 31.18181800842285, 46.54545593261719, 66.2727279663086, 90.90908813476562]
+</pre><figcaption class="caption-bottom" data-location="1" data-localized-kind="Figure">New features shipped over time in poorly designed software (red) vs. well-designed software (blue)</figcaption></figure><h2 id="overengineering-is-a-myth">Overengineering is a myth</h2><blockquote class="note" style="--quote-type-label: 'Note';" data-labeled=""><p>It&rsquo;s worth mentioning that, when referring to <em>overengineering</em>, we&rsquo;re in the context of software architecture.
+We&rsquo;re not discussing it in the sense of distributed systems and microservices, as that isn&rsquo;t my field of expertise.</p></blockquote><p>As an advocate of clean code, I often ask myself whether I&rsquo;m overengineering things.
+Whenever I believe I&rsquo;ve crossed that line, I&rsquo;m proven wrong as soon as I need to add new functionality on top of what I built earlier.
+At that point, I realize the design choices I&rsquo;d made were actually anticipating change, not overengineering.
+Even without foreseeing the exact change or having any gut feeling about how the software would evolve 6 months down the line, those choices still turn out to be the right ones.</p><h3 id="a-practical-example">A practical example</h3><p>When using the <a href="https://quarkdown.com">Quarkdown</a> CLI,
+the <span class="codespan-content"><code>quarkdown create</code></span> command generates a new Quarkdown project with a predefined structure.</p><div class="box callout"><header><h4>About Quarkdown</h4></header><div class="box-content"><p>Quarkdown is a Markdown-based typesetting system, written in Kotlin.
+It can compile paged documents, slides, and web pages like this one.</p></div></div><p>The requirements for this command were:</p><ul><li><span class="codespan-content"><code>--main-file &lt;name&gt;</code></span>: option to specify the name of the main file. Default is <span class="codespan-content"><code>main</code></span>.</li><li>Multiple prompts to gather name, description, document type, and other properties. <br />
+These properties are then used in the main file as metadata: <span class="codespan-content"><code>.docname {...}</code></span>, <span class="codespan-content"><code>.docdescription {...}</code></span>, <span class="codespan-content"><code>.doctype {...}</code></span>, and so on.</li><li>Unless the <span class="codespan-content"><code>--empty</code></span> flag is provided, the main file should contain sample content
+to help the user grasp the syntax and learn how to use the CLI.
+Also, an <span class="codespan-content"><code>images</code></span> directory should be created, containing a sample image referenced in the main file.</li></ul><div class="file-tree"><ul><li class="directory" data-name="my-project">my-project<ul><li class="file" data-name="main.qd">main.qd</li><li class="directory" data-name="images">images<ul><li class="file" data-name="logo.png">logo.png</li></ul></li></ul></li></ul></div><p>At this point, you might think the implementation is straightforward: create the main file with the specified name,
+inject properties, and optionally add the sample content and the images directory:</p><pre><code class="language-kotlin">fun createProject(
+    mainFileName: String,
+    empty: Boolean,
+    info: DocumentInfo
+) {
+    val mainFile = File(mainFileName + &quot;.qd&quot;)
+    mainFile.writeText(
+        &quot;&quot;&quot;
+        .docname {${info.name}}
+        .docdescription {${info.description}}
+        .doctype {${info.documentType}}
+        
+            ${if (!empty) &quot;&quot;&quot;
+                # ${info.name}
+
+                Welcome to Quarkdown!
+
+                ## Compiling
+
+                ...
+            &quot;&quot;&quot;.trimIndent() else &quot;&quot;}
+        &quot;&quot;&quot;.trimIndent()
+    )
+    
+    if (!empty) {
+        val imagesDir = File(&quot;images&quot;)
+        imagesDir.mkdir()
+        // Add sample image to the images directory
+    }
+}</code></pre><p>Although it&rsquo;s concise and meets the requirements, this implementation is not maintainable:</p><ul><li>If we want to add more properties in the future (and we will), we&rsquo;d need to modify <span class="codespan-content"><code>writeText</code></span>&rsquo;s raw string.</li><li>If we want to change the sample content, we&rsquo;d need to modify yet another nested raw string.</li></ul><p>This is what anticipation of change is all about:
+designing code that can accommodate future modifications without having to rewrite large portions of it.</p><p>Instead, here&rsquo;s another approach:</p><ul><li>Load the contents from a JTE (Java Template Engine) template, a simple text file with placeholders.</li><li>Instead of creating a file right away, return an <span class="codespan-content"><code>OutputResource</code></span>, Quarkdown&rsquo;s abstraction of a file to be created.</li></ul><pre><code class="language-kotlin">fun createProject(
+    mainFileName: String,
+    empty: Boolean,
+    info: DocumentInfo
+): OutputResource {
+    val templateContent = loadTemplate(&quot;main.qd.jte&quot;)
+    val renderedContent = renderTemplate(templateContent, info, empty)
+    return OutputResource(mainFileName + &quot;.qd&quot;, renderedContent)
+}</code></pre><h4 id="the-final-architecture">The final architecture</h4><p>Well, that&rsquo;s straightforward and clean. Why would that be overengineered?
+Because that&rsquo;s not what I went with! I instead went for this monster of a solution:</p><ul><li><span class="codespan-content"><code>ProjectCreator</code></span>: the orchestrator. It doesn&rsquo;t know <em>how</em> to create templates or <em>what</em> initial content to include.
+Instead, it delegates these responsibilities to two injected strategies:</li><li><span class="codespan-content"><code>ProjectCreatorTemplateProcessorFactory</code></span>: a factory that creates JTE template processors and injects the document info.
+It also defines <em>which</em> files to generate via <span class="codespan-content"><code>createFilenameMappings()</code></span>, a map of file names to their own template processor.</li><li><span class="codespan-content"><code>ProjectCreatorInitialContentSupplier</code></span>: a strategy that provides the sample content and additional resources (e.g. images).
+The default implementation loads a separate <span class="codespan-content"><code>.jte</code></span> template with the sample code, plus the image. <br />
+If <span class="codespan-content"><code>--empty</code></span> is provided, the <span class="codespan-content"><code>Empty</code></span> supplier is used, which returns empty content and no resources.</li></ul><p>When <span class="codespan-content"><code>createResources()</code></span> is called, <span class="codespan-content"><code>ProjectCreator</code></span> iterates over the factory&rsquo;s file mappings,
+processes each template, and collects all results.</p><pre><code class="language-kotlin">class ProjectCreator(
+    private val templateProcessorFactory: ProjectCreatorTemplateProcessorFactory,
+    private val initialContentSupplier: ProjectCreatorInitialContentSupplier,
+    private val mainFileName: String,
+) {
+    fun createResources(): Set&lt;OutputResource&gt; {
+        val resources =
+            this.templateProcessorFactory.createFilenameMappings()
+                .map { (fileName, processor) -&gt;
+                    TextOutputResource(
+                        fileName ?: mainFileName,
+                        processor.process(),
+                    )
+                }
+
+        return buildSet {
+            addAll(resources)
+            addAll(initialContentSupplier.createResources())
+        }
+    }
+}</code></pre><figure id="figure-2"><pre class="mermaid">classDiagram
+    direction TB
+    class ProjectCreator {
+        -mainFileName String
+        +createResources() Set~OutputResource~
+    }
+    class ProjectCreatorTemplateProcessorFactory {
+        &lt;&lt;interface&gt;&gt;
+        +createFilenameMappings() Map~String?, TemplateProcessor~
+    }
+    class DefaultProjectCreatorTemplateProcessorFactory {
+        -info DocumentInfo
+    }
+    class ProjectCreatorInitialContentSupplier {
+        &lt;&lt;interface&gt;&gt;
+        +templateContent String
+        +createResources() Set~OutputResource~
+    }
+    class EmptyProjectCreatorInitialContentSupplier {
+        +templateCodeContent = null
+        +createResources() = emptySet
+    }
+    class DefaultProjectCreatorInitialContentSupplier {
+        +templateCodeContent
+        +createResources() images
+    }
+    ProjectCreator --&gt; ProjectCreatorTemplateProcessorFactory
+    ProjectCreator --&gt; ProjectCreatorInitialContentSupplier
+    ProjectCreatorTemplateProcessorFactory &lt;|.. DefaultProjectCreatorTemplateProcessorFactory
+    ProjectCreatorInitialContentSupplier &lt;|.. DefaultProjectCreatorInitialContentSupplier
+    ProjectCreatorInitialContentSupplier &lt;|.. EmptyProjectCreatorInitialContentSupplier</pre><figcaption class="caption-bottom" data-location="2" data-localized-kind="Figure">Architecture of the <span class="codespan-content"><code>ProjectCreator</code></span> system</figcaption></figure><h4 id="what-proved-me-wrong">What proved me wrong</h4><p>I knew this solution was slightly excessive, but I went with it anyway.
+Overengineered, until, about one year later, I added support for a new document type: <span class="codespan-content"><code>docs</code></span>.
+This new type allows Quarkdown to generate multi-page technical documentation and wikis,
+which have a different structure and different sample content compared to the other types.
+This is the structure of a <span class="codespan-content"><code>docs</code></span> project that should be generated:</p><div class="file-tree"><ul><li class="directory" data-name="my-project">my-project<ul><li class="file" data-name="main.qd">main.qd</li><li class="file" data-name="_setup.qd">_setup.qd</li><li class="file" data-name="_nav.qd">_nav.qd</li><li class="file" data-name="page-1.qd">page-1.qd</li><li class="file" data-name="page-2.qd">page-2.qd</li><li class="file" data-name="page-3.qd">page-3.qd</li></ul></li></ul></div><p>On top of that, <span class="codespan-content"><code>page-N.qd</code></span> files shouldn&rsquo;t be generated if the <span class="codespan-content"><code>--empty</code></span> flag is provided.</p><p>If I had stuck with the naive implementation, that would have been a nightmare to keep up with:
+just imagine the amount of conditional logic and nesting to accommodate the new files to be generated.</p><p>Instead, with my implementation it was just a matter of adding two small classes:</p><ul><li><span class="codespan-content"><code>DocsProjectCreatorTemplateProcessorFactory</code></span>: overrides <span class="codespan-content"><code>createFilenameMappings()</code></span> to generate <em>two</em> files instead of one: <span class="codespan-content"><code>_setup.qd</code></span> and <span class="codespan-content"><code>main.qd</code></span>.</li><li><span class="codespan-content"><code>DocsProjectCreatorInitialContentSupplier</code></span>: reuses the default&rsquo;s sample code content and provides the additional page resources (<span class="codespan-content"><code>_nav.qd</code></span>, <span class="codespan-content"><code>page-1.qd</code></span>, <span class="codespan-content"><code>page-2.qd</code></span>, <span class="codespan-content"><code>page-3.qd</code></span>).</li></ul><p>No changes to <span class="codespan-content"><code>ProjectCreator</code></span> itself were needed: it remained completely unaware of <span class="codespan-content"><code>docs</code></span> projects.
+The CLI command simply picks the right strategy based on the document type, and the rest falls into place:</p><pre><code class="language-kotlin">return ProjectCreator(
+            templateProcessorFactory =
+                when {
+                    isDocs -&gt; DocsProjectCreatorTemplateProcessorFactory(documentInfo)
+                    else -&gt; DefaultProjectCreatorTemplateProcessorFactory(documentInfo)
+                },
+            initialContentSupplier =
+                when {
+                    noInitialContent -&gt; EmptyProjectCreatorInitialContentSupplier()
+                    isDocs -&gt; DocsProjectCreatorInitialContentSupplier()
+                    else -&gt; DefaultProjectCreatorInitialContentSupplier()
+                },
+            mainFileName,
+        )</code></pre><figure id="figure-3"><pre class="mermaid">classDiagram
+    direction LR
+    ProjectCreator --&gt; ProjectCreatorTemplateProcessorFactory
+    ProjectCreator --&gt; ProjectCreatorInitialContentSupplier
+    ProjectCreatorTemplateProcessorFactory &lt;|.. DefaultProjectCreatorTemplateProcessorFactory
+    ProjectCreatorTemplateProcessorFactory &lt;|.. DocsProjectCreatorTemplateProcessorFactory
+    ProjectCreatorInitialContentSupplier &lt;|.. DefaultProjectCreatorInitialContentSupplier
+    ProjectCreatorInitialContentSupplier &lt;|.. EmptyProjectCreatorInitialContentSupplier
+    ProjectCreatorInitialContentSupplier &lt;|.. DocsProjectCreatorInitialContentSupplier</pre><figcaption class="caption-bottom" data-location="3" data-localized-kind="Figure">Updated architecture with docs support</figcaption></figure><h2 id="takeaway">Takeaway</h2><p>This example shows why I don&rsquo;t believe overengineering is a thing in software architecture.
+Strategy pattern, factory, supplier: they all seemed like overkill for a simple project generator.
+But when the requirements evolved, the architecture held up without changes to the core <span class="codespan-content"><code>ProjectCreator</code></span>.</p><span class="size-tiny">This post was written by a human :)</span></main>
+    <aside class="margin-area" id="margin-area-right"></aside>
+  </body>
+</html>

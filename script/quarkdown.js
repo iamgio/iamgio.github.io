@@ -1,12 +1,33 @@
 "use strict";
 (() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __esm = (fn, res) => function __init() {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __commonJS = (cb, mod) => function __require() {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
 
   // src/main/typescript/capabilities.ts
   var capabilities;
@@ -147,9 +168,9 @@
     }
   });
 
-  // src/main/typescript/sidebar/sidebar.ts
-  function initSidebarActiveTracking(sidebar) {
-    const items = sidebar.querySelectorAll("li[data-target-id]");
+  // src/main/typescript/navigation/active-tracking.ts
+  function initNavigationActiveTracking(navigation) {
+    const items = navigation.querySelectorAll("li[data-target-id]");
     if (items.length === 0) return;
     const targetToItem = /* @__PURE__ */ new Map();
     items.forEach((item) => {
@@ -222,19 +243,19 @@
       }
     });
   }
-  var init_sidebar = __esm({
-    "src/main/typescript/sidebar/sidebar.ts"() {
+  var init_active_tracking = __esm({
+    "src/main/typescript/navigation/active-tracking.ts"() {
       "use strict";
     }
   });
 
   // src/main/typescript/document/handlers/sidebar.ts
   var Sidebar;
-  var init_sidebar2 = __esm({
+  var init_sidebar = __esm({
     "src/main/typescript/document/handlers/sidebar.ts"() {
       "use strict";
       init_document_handler();
-      init_sidebar();
+      init_active_tracking();
       Sidebar = class extends DocumentHandler {
         async onPostRendering() {
           const template = document.querySelector("#sidebar-template");
@@ -244,7 +265,7 @@
           sidebar.style.position = "fixed";
           document.body.appendChild(sidebar);
           template.remove();
-          initSidebarActiveTracking(sidebar);
+          initNavigationActiveTracking(sidebar);
         }
       };
     }
@@ -348,7 +369,7 @@
   var init_plain_document = __esm({
     "src/main/typescript/document/type/plain-document.ts"() {
       "use strict";
-      init_sidebar2();
+      init_sidebar();
       init_execution_queues();
       init_footnotes_plain();
       PlainDocument = class {
@@ -407,26 +428,6 @@
           } else {
             span.textContent = content;
           }
-        }
-      };
-    }
-  });
-
-  // src/main/typescript/document/handlers/remaining-height.ts
-  var RemainingHeight;
-  var init_remaining_height = __esm({
-    "src/main/typescript/document/handlers/remaining-height.ts"() {
-      "use strict";
-      init_document_handler();
-      RemainingHeight = class extends DocumentHandler {
-        async onPostRendering() {
-          const fillHeightElements = document.querySelectorAll(".fill-height");
-          fillHeightElements.forEach((element) => {
-            const contentArea = this.quarkdownDocument.getParentViewport(element);
-            if (!contentArea) return;
-            const remainingHeight = contentArea.getBoundingClientRect().bottom - element.getBoundingClientRect().top;
-            element.style.setProperty("--viewport-remaining-height", `${remainingHeight}px`);
-          });
         }
       };
     }
@@ -613,11 +614,11 @@
           if (cachedSvg) {
             console.debug("Using cached SVG for diagram:", id);
             element.innerHTML = cachedSvg;
+            element.dataset.fromCache = "true";
             return;
           }
           console.debug("Rendering diagram:", id);
           const diagram = await mermaid.render(id, code, element);
-          console.log(diagram);
           const svg = diagram.svg;
           element.innerHTML = svg;
           sessionStorage.setItem(id, svg);
@@ -664,7 +665,6 @@
   function getGlobalHandlers(document2) {
     return [
       new InlineCollapsibles(document2),
-      new RemainingHeight(document2),
       capabilities.code && new CodeHighlighter(document2),
       capabilities.math && new MathRenderer(document2),
       capabilities.mermaid && new MermaidRenderer(document2)
@@ -675,7 +675,6 @@
       "use strict";
       init_capabilities();
       init_inline_collapsibles();
-      init_remaining_height();
       init_math_renderer();
       init_code_highlighter();
       init_mermaid_renderer();
@@ -760,9 +759,10 @@
           let currentChunk = createElement();
           Array.from(this.container.children).forEach((child) => {
             const el = child;
-            if (el.className === "page-break") {
+            if (el.classList.contains("page-break")) {
               chunks.push(currentChunk);
               currentChunk = createElement();
+              currentChunk.appendChild(child);
             } else {
               currentChunk.appendChild(child);
             }
@@ -978,6 +978,199 @@
     }
   });
 
+  // node_modules/romans/romans.js
+  var require_romans = __commonJS({
+    "node_modules/romans/romans.js"(exports, module) {
+      var ROMAN_LOOKUP = new Array(4e3);
+      var DECIMAL_LOOKUP = /* @__PURE__ */ new Map();
+      var CHAR_VALUES = Object.freeze({
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1e3
+      });
+      var CONVERSION_PAIRS = Object.freeze([
+        [1e3, "M"],
+        [900, "CM"],
+        [500, "D"],
+        [400, "CD"],
+        [100, "C"],
+        [90, "XC"],
+        [50, "L"],
+        [40, "XL"],
+        [10, "X"],
+        [9, "IX"],
+        [5, "V"],
+        [4, "IV"],
+        [1, "I"]
+      ]);
+      var INVALID_PATTERNS = Object.freeze([
+        /I{4,}/,
+        /V{2,}/,
+        /X{4,}/,
+        /L{2,}/,
+        /C{4,}/,
+        /D{2,}/,
+        /M{4,}/,
+        /IL|IC|ID|IM/,
+        /VL|VC|VD|VM|VX/,
+        /XD|XM/,
+        /LC|LD|LM/,
+        /DM/,
+        /IVIV|IXIX|XLXL|XCXC|CDCD|CMCM/
+      ]);
+      var VALID_CHARS = /* @__PURE__ */ new Set(["I", "V", "X", "L", "C", "D", "M"]);
+      var initialized = false;
+      function initializeLookupTables() {
+        if (initialized) return;
+        for (let i = 1; i < 4e3; i++) {
+          ROMAN_LOOKUP[i] = buildRomanFast(i);
+          DECIMAL_LOOKUP.set(ROMAN_LOOKUP[i], i);
+        }
+        initialized = true;
+      }
+      function buildRomanFast(num) {
+        let result = "";
+        if (num >= 1e3) {
+          const count = Math.floor(num / 1e3);
+          result += "M".repeat(count);
+          num %= 1e3;
+        }
+        if (num >= 900) {
+          result += "CM";
+          num -= 900;
+        }
+        if (num >= 500) {
+          result += "D";
+          num -= 500;
+        }
+        if (num >= 400) {
+          result += "CD";
+          num -= 400;
+        }
+        if (num >= 100) {
+          const count = Math.floor(num / 100);
+          result += "C".repeat(count);
+          num %= 100;
+        }
+        if (num >= 90) {
+          result += "XC";
+          num -= 90;
+        }
+        if (num >= 50) {
+          result += "L";
+          num -= 50;
+        }
+        if (num >= 40) {
+          result += "XL";
+          num -= 40;
+        }
+        if (num >= 10) {
+          const count = Math.floor(num / 10);
+          result += "X".repeat(count);
+          num %= 10;
+        }
+        if (num >= 9) {
+          result += "IX";
+          num -= 9;
+        }
+        if (num >= 5) {
+          result += "V";
+          num -= 5;
+        }
+        if (num >= 4) {
+          result += "IV";
+          num -= 4;
+        }
+        if (num >= 1) {
+          result += "I".repeat(num);
+        }
+        return result;
+      }
+      function isValidRoman(str) {
+        if (typeof str !== "string" || str.length === 0) return false;
+        for (let i = 0; i < str.length; i++) {
+          if (!VALID_CHARS.has(str[i])) return false;
+        }
+        for (let i = 0; i < INVALID_PATTERNS.length; i++) {
+          if (INVALID_PATTERNS[i].test(str)) return false;
+        }
+        return true;
+      }
+      var romanize2 = (decimal) => {
+        if (decimal === Infinity) {
+          throw new Error("requires max value of less than 4000");
+        }
+        if ((decimal | 0) !== decimal || decimal <= 0) {
+          throw new Error("requires an unsigned integer");
+        }
+        if (decimal >= 4e3) {
+          throw new Error("requires max value of less than 4000");
+        }
+        if (!initialized) initializeLookupTables();
+        return ROMAN_LOOKUP[decimal];
+      };
+      var deromanize = (romanStr) => {
+        if (typeof romanStr !== "string") {
+          throw new Error("requires valid roman numeral string");
+        }
+        if (!initialized) initializeLookupTables();
+        const cached = DECIMAL_LOOKUP.get(romanStr);
+        if (cached !== void 0) {
+          return cached;
+        }
+        if (!isValidRoman(romanStr)) {
+          throw new Error("requires valid roman numeral string");
+        }
+        let result = 0;
+        let prevValue = 0;
+        for (let i = romanStr.length - 1; i >= 0; i--) {
+          const currentValue = CHAR_VALUES[romanStr[i]];
+          result += currentValue < prevValue ? -currentValue : currentValue;
+          prevValue = currentValue;
+        }
+        return result;
+      };
+      initializeLookupTables();
+      var allChars = CONVERSION_PAIRS.map((pair) => pair[1]);
+      var allNumerals = CONVERSION_PAIRS.map((pair) => pair[0]);
+      module.exports = {
+        deromanize,
+        romanize: romanize2,
+        allChars,
+        allNumerals
+      };
+    }
+  });
+
+  // src/main/typescript/util/numbering.ts
+  function formatNumber(number, format) {
+    switch (format) {
+      case "1":
+        return number.toString();
+      case "a":
+        return String.fromCharCode("a".charCodeAt(0) + number - 1);
+      case "A":
+        return String.fromCharCode("A".charCodeAt(0) + number - 1);
+      case "i":
+        return (0, import_romans.romanize)(number).toLowerCase();
+      case "I":
+        return (0, import_romans.romanize)(number);
+      default:
+        return format;
+    }
+  }
+  var import_romans;
+  var init_numbering = __esm({
+    "src/main/typescript/util/numbering.ts"() {
+      "use strict";
+      import_romans = __toESM(require_romans());
+    }
+  });
+
   // src/main/typescript/document/handlers/page-numbers.ts
   var PageNumbers;
   var init_page_numbers = __esm({
@@ -985,6 +1178,7 @@
       "use strict";
       init_document_handler();
       init_id();
+      init_numbering();
       PageNumbers = class extends DocumentHandler {
         /**
          * Gets all elements that display the total page count.
@@ -1008,6 +1202,12 @@
           return Array.from(page.querySelectorAll(".page-number-reset"));
         }
         /**
+         * Finds all page number format markers contained in the given page.
+         */
+        getPageNumberFormatMarkers(page) {
+          return Array.from(page.querySelectorAll(".page-number-formatter"));
+        }
+        /**
          * Updates all total page number elements with the total count of pages.
          */
         updateTotalPageNumbers(pages) {
@@ -1021,7 +1221,15 @@
          */
         updateCurrentPageNumbers(pages) {
           let pageNumber = 1;
+          let currentFormat = "1";
           pages.forEach((page) => {
+            const formatMarkers = this.getPageNumberFormatMarkers(page);
+            formatMarkers.forEach((marker) => {
+              const format = marker.dataset.format;
+              if (format !== void 0) {
+                currentFormat = format;
+              }
+            });
             const resetMarkers = this.getPageNumberResetMarkers(page);
             resetMarkers.forEach((marker) => {
               const requested = parseInt(marker.dataset.start || "1", 10);
@@ -1029,9 +1237,10 @@
                 pageNumber = requested;
               }
             });
-            this.quarkdownDocument.setDisplayPageNumber(page, pageNumber);
+            const formattedPageNumber = formatNumber(pageNumber, currentFormat);
+            this.quarkdownDocument.setDisplayPageNumber(page, formattedPageNumber);
             this.getCurrentPageNumberElements(page).forEach((pageNumberElement) => {
-              pageNumberElement.innerText = pageNumber.toString();
+              pageNumberElement.innerText = formattedPageNumber;
             });
             pageNumber += 1;
           });
@@ -1045,7 +1254,7 @@
             nav.querySelectorAll(':scope a[href^="#"]').forEach((anchor) => {
               const targetId = getAnchorTargetId(anchor);
               const target = targetId ? document.getElementById(targetId) : void 0;
-              const displayNumber = target ? this.quarkdownDocument.getPageNumber(this.quarkdownDocument.getPage(target)) : void 0;
+              const displayNumber = target ? this.quarkdownDocument.getDisplayPageNumber(this.quarkdownDocument.getPage(target)) : void 0;
               this.setTableOfContentsPageNumber(anchor, displayNumber?.toString());
             });
           });
@@ -1194,25 +1403,26 @@
             };
           });
         }
-        getPageNumber(page, includeDisplayNumbers = true) {
+        getPageNumber(page) {
           const slide = page.slide;
-          const displayNumber = includeDisplayNumbers ? slide.dataset.displayPageNumber : void 0;
-          if (displayNumber) {
-            return parseInt(displayNumber, 10);
-          }
           if (!slide.parentElement) return 0;
           const index = Array.from(slide.parentElement.children).indexOf(slide);
           return index + 1;
         }
+        getDisplayPageNumber(page) {
+          const slide = page.slide;
+          const displayNumber = slide.dataset.displayPageNumber;
+          return displayNumber ? displayNumber : this.getPageNumber(page).toString();
+        }
+        setDisplayPageNumber(page, pageNumber) {
+          page.slide.setAttribute("data-display-page-number", pageNumber);
+        }
         getPageType(page) {
-          const pageNumber = this.getPageNumber(page, false);
+          const pageNumber = this.getPageNumber(page);
           return pageNumber % 2 === 0 ? "left" : "right";
         }
         getPage(element) {
           return this.getPages().find((page) => page.slide === this.getParentViewport(element));
-        }
-        setDisplayPageNumber(page, pageNumber) {
-          page.slide.setAttribute("data-display-page-number", pageNumber.toString());
         }
         /** Sets up pre-rendering to execute when DOM content is loaded */
         setupPreRenderingHook() {
@@ -1422,24 +1632,6 @@
     }
   });
 
-  // src/main/typescript/document/handlers/paged/column-count-paged.ts
-  var ColumnCountPaged;
-  var init_column_count_paged = __esm({
-    "src/main/typescript/document/handlers/paged/column-count-paged.ts"() {
-      "use strict";
-      init_document_handler();
-      ColumnCountPaged = class extends DocumentHandler {
-        async onPostRendering() {
-          const columnCount = getComputedStyle(document.body).getPropertyValue("--qd-column-count")?.trim();
-          if (!columnCount || columnCount === "") return;
-          document.querySelectorAll(".pagedjs_page_content > div").forEach((content) => {
-            content.style.columnCount = columnCount;
-          });
-        }
-      };
-    }
-  });
-
   // src/main/typescript/document/handlers/show-on-ready.ts
   var ShowOnReady;
   var init_show_on_ready = __esm({
@@ -1463,11 +1655,10 @@
     "src/main/typescript/document/type/paged-document.ts"() {
       "use strict";
       init_execution_queues();
-      init_sidebar2();
+      init_sidebar();
       init_page_margins_paged();
       init_footnotes_paged();
       init_split_code_blocks_fix_paged();
-      init_column_count_paged();
       init_page_numbers();
       init_show_on_ready();
       init_persistent_headings();
@@ -1484,17 +1675,17 @@
         getPage(element) {
           return element.closest(".pagedjs_page") || void 0;
         }
-        getPageNumber(page, includeDisplayNumbers = true) {
-          console.log("Getting page number for page:", page.dataset);
-          return parseInt(
-            (includeDisplayNumbers ? page.dataset.displayPageNumber : void 0) ?? page.dataset.pageNumber ?? "0"
-          );
+        getPageNumber(page) {
+          return parseInt(page.dataset.pageNumber ?? "0");
+        }
+        getDisplayPageNumber(page) {
+          return page.dataset.displayPageNumber ?? this.getPageNumber(page).toString();
+        }
+        setDisplayPageNumber(page, pageNumber) {
+          page.setAttribute("data-display-page-number", pageNumber);
         }
         getPageType(page) {
           return page.classList.contains("pagedjs_right_page") ? "right" : "left";
-        }
-        setDisplayPageNumber(page, pageNumber) {
-          page.setAttribute("data-display-page-number", pageNumber.toString());
         }
         /** Sets up pre-rendering to execute when DOM content is loaded. */
         setupPreRenderingHook() {
@@ -1521,7 +1712,6 @@
             new PageNumbers(this),
             new PersistentHeadings(this),
             new FootnotesPaged(this),
-            new ColumnCountPaged(this),
             new SplitCodeBlocksFixPaged(this)
           ];
         }
@@ -4009,6 +4199,82 @@
     }
   });
 
+  // src/main/typescript/util/browser.ts
+  function isSafari() {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  }
+  var init_browser = __esm({
+    "src/main/typescript/util/browser.ts"() {
+      "use strict";
+    }
+  });
+
+  // src/main/typescript/document/handlers/docs/page-list-autoscroll.ts
+  var PAGE_LIST_SELECTOR, CURRENT_PAGE_SELECTOR2, STORAGE_KEY, PageListAutoscroll;
+  var init_page_list_autoscroll = __esm({
+    "src/main/typescript/document/handlers/docs/page-list-autoscroll.ts"() {
+      "use strict";
+      init_document_handler();
+      init_browser();
+      PAGE_LIST_SELECTOR = 'nav[data-role="page-list"]';
+      CURRENT_PAGE_SELECTOR2 = "[aria-current]";
+      STORAGE_KEY = "qd-page-list-scroll";
+      PageListAutoscroll = class extends DocumentHandler {
+        async onPostRendering() {
+          const pageList = document.querySelector(PAGE_LIST_SELECTOR);
+          if (!pageList) return;
+          const currentPage = pageList.querySelector(CURRENT_PAGE_SELECTOR2);
+          if (!currentPage) return;
+          const aside = currentPage.closest("aside");
+          if (!aside) return;
+          this.restoreScrollPosition(aside);
+          if (!isSafari()) {
+            this.scrollToCurrentPage(aside, currentPage);
+          }
+          this.saveScrollPositionOnScroll(aside);
+        }
+        restoreScrollPosition(aside) {
+          const savedScrollTop = sessionStorage.getItem(STORAGE_KEY);
+          if (savedScrollTop !== null) {
+            aside.scrollTop = parseFloat(savedScrollTop);
+          }
+        }
+        scrollToCurrentPage(aside, currentPage) {
+          const asideRect = aside.getBoundingClientRect();
+          const currentRect = currentPage.getBoundingClientRect();
+          const targetScrollTop = Math.max(0, currentRect.top - asideRect.top + aside.scrollTop - aside.clientHeight / 4);
+          aside.scrollTo({
+            top: targetScrollTop,
+            behavior: "smooth"
+          });
+        }
+        saveScrollPositionOnScroll(aside) {
+          aside.addEventListener("scroll", () => {
+            sessionStorage.setItem(STORAGE_KEY, aside.scrollTop.toString());
+          });
+        }
+      };
+    }
+  });
+
+  // src/main/typescript/document/handlers/docs/toc-active-tracking.ts
+  var TOC_SELECTOR, TocActiveTracking;
+  var init_toc_active_tracking = __esm({
+    "src/main/typescript/document/handlers/docs/toc-active-tracking.ts"() {
+      "use strict";
+      init_document_handler();
+      init_active_tracking();
+      TOC_SELECTOR = 'aside nav[data-role="table-of-contents"]';
+      TocActiveTracking = class extends DocumentHandler {
+        async onPostRendering() {
+          const toc = document.querySelector(TOC_SELECTOR);
+          if (!toc) return;
+          initNavigationActiveTracking(toc);
+        }
+      };
+    }
+  });
+
   // src/main/typescript/document/type/docs-document.ts
   var DocsDocument;
   var init_docs_document = __esm({
@@ -4020,6 +4286,8 @@
       init_search_field();
       init_footnotes_docs();
       init_sibling_pages_buttons();
+      init_page_list_autoscroll();
+      init_toc_active_tracking();
       DocsDocument = class extends PlainDocument {
         getHandlers() {
           return [
@@ -4027,7 +4295,9 @@
             new SearchField(this),
             new SiblingPagesButtons(this),
             new PageMarginsDocs(this),
-            new FootnotesDocs(this)
+            new FootnotesDocs(this),
+            new PageListAutoscroll(this),
+            new TocActiveTracking(this)
           ];
         }
       };
