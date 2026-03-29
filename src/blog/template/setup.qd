@@ -14,4 +14,4 @@
     .if {.date::isnone::not}
         .date::text classname:{blog-date}
         
-    #! .docname
+    # .docname

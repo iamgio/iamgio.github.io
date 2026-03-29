@@ -43,13 +43,15 @@ function wrapBlogItemWithLink(blogItem, href) {
 }
 
 /**
- * Maps h1-h4 heading levels to h3-h6 within the blog item content.
+ * Maps h1-h4 heading levels to h3-h6 within the blog item content,
+ * and also deletes the corresponding list item from the sidebar.
  */
 function reduceHeadingLevels(blogItem) {
     const increase = 2;
     const minLevel = 1;
     const maxLevel = 4;
     const headings = Array.from(blogItem.querySelectorAll('h1, h2, h3, h4'));
+    const sidebar = document.querySelector('nav.sidebar');
     headings.forEach(heading => {
         const level = parseInt(heading.tagName[1]);
         if (level >= minLevel && level <= maxLevel) {
@@ -60,5 +62,7 @@ function reduceHeadingLevels(blogItem) {
             });
             heading.parentNode.replaceChild(newHeading, heading);
         }
+
+        sidebar.querySelector(`li[data-target-id="${heading.id}"]`)?.remove();
     });
 }
