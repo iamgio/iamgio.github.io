@@ -13,7 +13,7 @@ to name a few, [Quake's fast inverse square root](https://en.wikipedia.org/wiki/
 However, times change, and software follows: with engineers no longer needing to leverage low-level tricks to achieve the impossible,
 the focus shifted towards robust, maintainable, predictive, and automatically-tested software.
 
-## A shallow dive into software quality
+## A shallow dive into internal software quality
 
 When talking about good code, we typically mean code that's easy to pick up, understand, and change,
 and that follows the software engineering principles, that include:
