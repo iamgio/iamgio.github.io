@@ -268,4 +268,6 @@ This example shows why I don't believe overengineering is a thing in software ar
 Strategy pattern, factory, supplier: they all seemed like overkill for a simple project generator.
 But when the requirements evolved, the architecture held up without changes to the core `ProjectCreator`.
 
+This was a relatively simple and small example, but the same principle easily scales up to larger and more complex systems.
+
 .text {This post was written by a human :)} size:{tiny}
