@@ -201,6 +201,8 @@ body.quarkdown.quarkdown-paged .pagedjs_area {
 }
 .quarkdown p:not(.page-margin-content p, .mermaid p) {
   text-align: var(--qd-horizontal-alignment-local);
+}
+.quarkdown p:not(.page-margin-content p, .mermaid p):not([data-split-to]) {
   text-align-last: var(--qd-horizontal-alignment-global);
 }
 .quarkdown li:not(nav li) {
@@ -224,6 +226,13 @@ body.quarkdown.quarkdown-paged .pagedjs_area {
   --qd-horizontal-alignment-global: start;
   --qd-horizontal-alignment-local: justify;
   --qd-horizontal-alignment-list-items: justify;
+}
+
+@media screen and (max-width: 800px), pagedjs-ignore {
+  .quarkdown-plain {
+    --qd-horizontal-alignment-local: start;
+    --qd-horizontal-alignment-list-items: start;
+  }
 }
 
 .quarkdown-slides {
@@ -349,7 +358,7 @@ body.quarkdown.quarkdown-paged .pagedjs_area {
 .quarkdown.quarkdown:not(.quarkdown-slides) p {
   hyphens: auto;
 }
-.quarkdown.quarkdown p, .quarkdown.quarkdown li, .quarkdown.quarkdown td, .quarkdown.quarkdown .footnote-definition {
+.quarkdown.quarkdown p, .quarkdown.quarkdown li, .quarkdown.quarkdown td, .quarkdown.quarkdown caption, .quarkdown.quarkdown figcaption, .quarkdown.quarkdown .footnote-definition {
   line-height: var(--qd-line-height);
   letter-spacing: var(--qd-letter-spacing);
 }
@@ -451,6 +460,27 @@ details > summary + p,
 .quarkdown table:not(pre table) td:not([align]) {
   text-align: var(--qd-table-default-cell-alignment);
 }
+
+.quarkdown figure > figcaption,
+.quarkdown table:not(pre table) > caption {
+  --caption-margin: var(--qd-caption-margin);
+  font-size: var(--qd-caption-font-size);
+  font-style: var(--qd-caption-font-style);
+}
+.quarkdown figure > figcaption.caption-top,
+.quarkdown table:not(pre table) > caption.caption-top {
+  margin-bottom: var(--caption-margin);
+}
+.quarkdown figure > figcaption.caption-bottom,
+.quarkdown table:not(pre table) > caption.caption-bottom {
+  margin-top: var(--caption-margin);
+}
+.quarkdown figure > figcaption.caption-top {
+  order: 0;
+}
+.quarkdown figure > figcaption.caption-bottom {
+  order: 2;
+}
 .quarkdown table:not(pre table):has(> caption.caption-top) {
   caption-side: top;
 }
@@ -458,14 +488,16 @@ details > summary + p,
   caption-side: bottom;
 }
 .quarkdown table:not(pre table) > caption {
+  --caption-margin: calc(var(--qd-caption-margin) + 0.5em);
   white-space: nowrap;
   overflow-x: hidden;
 }
-.quarkdown table:not(pre table) > caption.caption-top {
-  margin-bottom: 1em;
-}
-.quarkdown table:not(pre table) > caption.caption-bottom {
-  margin-top: 1em;
+
+@media screen and (max-width: 800px), pagedjs-ignore {
+  :is(.quarkdown-plain, .quarkdown-docs) figure > figcaption,
+:is(.quarkdown-plain, .quarkdown-docs) table:not(pre table) > caption {
+    font-size: var(--qd-sm-caption-font-size);
+  }
 }
 
 .quarkdown code {
@@ -490,6 +522,12 @@ details > summary + p,
 }
 .quarkdown-slides.quarkdown pre code {
   font-size: var(--qd-slides-code-block-font-size);
+}
+
+@media screen and (max-width: 800px), pagedjs-ignore {
+  :is(.quarkdown-plain, .quarkdown-docs).quarkdown pre code {
+    font-size: var(--qd-sm-code-block-font-size);
+  }
 }
 
 .quarkdown pre code table td, .quarkdown pre code table th {
@@ -595,14 +633,6 @@ details > summary + p,
 }
 .quarkdown figure > :not(figcaption) {
   order: 1;
-}
-.quarkdown figure > figcaption.caption-top {
-  order: 0;
-  margin-bottom: 0.5em;
-}
-.quarkdown figure > figcaption.caption-bottom {
-  order: 2;
-  margin-top: 0.5em;
 }
 .quarkdown figure:has(.mermaid, > pre) {
   margin-left: 0;
@@ -1622,6 +1652,10 @@ body.quarkdown-paged .pagedjs_page {
   --qd-code-span-font-size: var(--qd-main-font-size);
   --qd-code-block-font-size: var(--qd-code-span-font-size);
   --qd-slides-code-block-font-size: var(--qd-code-block-font-size);
+  --qd-sm-code-block-font-size: calc(var(--qd-code-block-font-size) * .8);
+  --qd-caption-font-size: var(--qd-main-font-size);
+  --qd-sm-caption-font-size: max(calc(var(--qd-caption-font-size) * .9), 0.8em);
+  --qd-caption-font-style: normal;
   --qd-main-localized-font: unset;
   --qd-heading-localized-font: unset;
   --qd-code-localized-font: unset;
@@ -1633,6 +1667,7 @@ body.quarkdown-paged .pagedjs_page {
   --qd-heading-margin: 40px 0 20px 0;
   --qd-task-checkbox-margin-right: 0.9em;
   --qd-list-margin-multiplier: 0.4;
+  --qd-caption-margin: 0.4em;
   --qd-box-margin-multiplier: 1.5;
   --qd-box-content-vertical-padding: 8px;
   --qd-nested-navigation-padding-left: 28px;
