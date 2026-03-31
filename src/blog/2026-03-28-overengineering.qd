@@ -5,6 +5,16 @@
 .numbering
     - figures: 1
 
+.css 
+    .classDiagram { width: 100% }
+
+    @media (min-width: 800px) {
+        #mermaid-450183093 {
+            width: 120%;
+            margin-left: -10%;
+        }
+    }
+
 Up until the last decade or so, hardware was so limited that engineers spent most of their time squeezing every transistor
 out of chips we'd now call prehistoric.
 I'm still amazed by the optimizations video games pulled off in the late 90's and early 2000's,
@@ -172,7 +182,7 @@ class ProjectCreator(
 
 .mermaid caption:{Architecture of the `ProjectCreator` system}
     classDiagram
-        direction TB
+        direction LR
         class ProjectCreator {
             -mainFileName String
             +createResources() Set~OutputResource~
