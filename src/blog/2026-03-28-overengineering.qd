@@ -9,7 +9,7 @@
     .classDiagram { width: 100% }
 
     @media (min-width: 800px) {
-        #mermaid-450183093 {
+        #mermaid-426900856 {
             width: 120%;
             margin-left: -10%;
         }
@@ -205,7 +205,7 @@ class ProjectCreator(
         }
         class DefaultProjectCreatorInitialContentSupplier {
             +templateCodeContent
-            +createResources() images
+            +createResources() = images
         }
         ProjectCreator --> ProjectCreatorTemplateProcessorFactory
         ProjectCreator --> ProjectCreatorInitialContentSupplier
