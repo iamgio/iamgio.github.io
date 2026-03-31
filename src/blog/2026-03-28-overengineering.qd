@@ -5,31 +5,31 @@
 .numbering
     - figures: 1
 
-From the rise of personal computers up to the last decade, our hardware was so limited that engineers' main challenge was letting everything
-fit in and squeezing every single transistor of those chips that now we perceive as prehistoric.
-To this day I'm still mind-boggled by the optimizations video games came up with between the late 90's and early 2000's:
-to name a few, [Quake's fast inverse square root](https://en.wikipedia.org/wiki/Fast_inverse_square_root) and [Crash Bandicoot literally hacking the PS1](https://arstechnica.com/gaming/2021/09/war-stories-how-crash-bandicoot-hacked-the-original-playstation/) to swap data faster.
+Up until the last decade or so, hardware was so limited that engineers spent most of their time squeezing every transistor
+out of chips we'd now call prehistoric.
+I'm still amazed by the optimizations video games pulled off in the late 90's and early 2000's,
+like [Quake's fast inverse square root](https://en.wikipedia.org/wiki/Fast_inverse_square_root) or [Crash Bandicoot literally hacking the PS1](https://arstechnica.com/gaming/2021/09/war-stories-how-crash-bandicoot-hacked-the-original-playstation/) to swap data faster.
 
-However, times change, and software follows: with engineers no longer needing to leverage low-level tricks to achieve the impossible,
-the focus shifted towards robust, maintainable, predictive, and automatically-tested software.
+But times changed. Engineers no longer need low-level tricks to achieve the impossible,
+so the focus shifted towards writing software that lasts and can evolve without breaking.
 
 ## A shallow dive into internal software quality
 
-When talking about good code, we typically mean code that's easy to pick up, understand, and change,
-and that follows the software engineering principles, that include:
+Good code is code that's easy to pick up, understand, and change.
+It usually comes down to a few principles:
 
-- Abstraction: hiding complexity behind a simple interface.
-- Modularity: organizing into independent components.
-- Separation of concerns: dividing into areas of functionality.
-- Anticipation of change: designing to accommodate future modifications. .br
-  This is my favorite aspect of software design and the main focus of this post.
+- Abstraction, hiding complexity behind a simple interface.
+- Modularity, organizing into independent components.
+- Separation of concerns, dividing into areas of functionality.
+- Anticipation of change, designing to accommodate future modifications. .br
+  This is my favorite one, and the main focus of this post.
 
-When you're kicking off a new project, it's tempting to just start coding and get things done quickly.
-Following these principles can feel like an unnecessary burden, but that's where things usually backfire:
-after the initial excitement of dozens of new features, the codebase becomes a tangled mess,
-and each new feature takes more and more time to implement, as you navigate through your delicious spaghetti code.
+When you're starting a new project, it's tempting to just dive in and get things done.
+These principles can feel like an unnecessary burden, but that's where it usually backfires:
+after the initial euphoria of shipping dozens of features, the codebase turns into a tangled mess,
+and every new feature takes longer and longer, as you get yourself through delicious spaghetti code.
 
-I learned about the following chart in my uni classes, and I wish I had seen it sooner:
+I learned about the following chart in my uni classes and I wish I'd seen it sooner:
 
 .xychart x:{Time (days)} y:{Number of features shipped} caption:{New features shipped over time in poorly designed software (red) vs. well-designed software (blue)} 
     .repeat {10} 
@@ -40,31 +40,30 @@ I learned about the following chart in my uni classes, and I wish I had seen it 
 
 ## Overengineering is a myth
 
-> Note: It's worth mentioning that, when referring to *overengineering*, we're in the context of software architecture.
-> We're not discussing it in the sense of distributed systems and microservices, as that isn't my field of expertise.
+> Note: When I say *overengineering* here, I'm talking in the context of software architecture,
+> not distributed systems and microservices, as that isn't my area of expertise.
 
 As an advocate for clean code, I often ask myself whether I'm overengineering things.
-Whenever I believe I've crossed that line, I'm proven wrong as soon as I need to add new functionality on top of what I built earlier.
+But every single time I think I've crossed that line, I'm proven wrong as soon as I need to build on top of what I wrote earlier,
+and everything seems to fall into place so naturally.
 
-At that point, I realize the design choices I'd made were actually anticipating change:
-even without foreseeing the exact change or having any gut feeling about how the software would evolve 6 months down the line, those choices still turn out to be the right ones.
+That's when I realize those design choices were actually anticipating change:
+even without foreseeing the exact change, or having any gut feeling about how the software would evolve 6 months down the line, those choices still turn out to be the right ones.
 
 ### A practical example
 
-When using the [Quarkdown](https://quarkdown.com) CLI,
-the `quarkdown create` command generates a new Quarkdown project with a predefined structure.
+The [Quarkdown](https://quarkdown.com) CLI has a `quarkdown create` command that generates a new Quarkdown project with a predefined structure.
 
 .box {About Quarkdown}
     Quarkdown is a Markdown-based typesetting system, written in Kotlin.
     It can compile paged documents, slides, and web pages like this one.
 
 The requirements for this command were:
-- `--main-file <name>`: option to specify the name of the main file. Default is `main`.
-- Multiple prompts to gather name, description, document type, and other properties. .br
-  These properties are then used in the main file as metadata: `.docname {...}`, `.docdescription {...}`, `.doctype {...}`, and so on.
-- Unless the `--empty` flag is provided, the main file should contain sample content
-  to help the user grasp the syntax and learn how to use the CLI.
-  Also, an `images` directory should be created, containing a sample image referenced in the main file.
+- `--main-file <name>` lets you pick the name of the main file. Default is `main`.
+- Several prompts gather name, description, document type, and other properties,
+  which are then injected as metadata: `.docname {...}`, `.docdescription {...}`, `.doctype {...}`, etc.
+- Unless `--empty` is provided, the main file should include sample content to help the user
+  learn the syntax and the CLI. An `images` directory is also created, with a sample image referenced in the main file.
 
 .filetree 
     - my-project
@@ -72,8 +71,8 @@ The requirements for this command were:
       - images
         - logo.png
 
-At this point, you might think the implementation is straightforward: create the main file with the specified name,
-inject properties, and optionally add the sample content and the images directory:
+At this point, the implementation seems pretty straightforward. Create the file, inject properties,
+optionally add the sample content and the images directory:
 
 ```kotlin
 fun createProject(
@@ -112,12 +111,12 @@ Although it's concise and meets the requirements, this implementation is not mai
 - If we want to add more properties in the future (and we will), we'd need to modify `writeText`'s raw string.
 - If we want to change the sample content, we'd need to modify yet another nested raw string.
 
-This is what anticipation of change is all about:
-designing code that can accommodate future modifications without having to rewrite large portions of it.
+That's what anticipation of change is about:
+designing code that can accommodate future modifications without having to rewrite half of it.
 
-Instead, here's another approach:
-- Load the contents from a JTE (Java Template Engine) template, a simple text file with placeholders.
-- Instead of creating a file right away, return an `OutputResource`, Quarkdown's abstraction of a file to be created.
+A better approach would be:
+- Load contents from a JTE (Java Template Engine) template, a simple text file with placeholders.
+- Instead of creating a file directly, return an `OutputResource`, Quarkdown's abstraction of a file to be created.
 
 ```kotlin
 fun createProject(
@@ -133,19 +132,19 @@ fun createProject(
 
 #### The final architecture
 
-Well, that's straightforward and clean. Why would that be overengineered?
-Because that's not what I went with! I instead went for this monster of a solution:
+That's clean and reasonable. So why would it be overengineered?
+Because that's not what I went with. I went for this monster instead:
 
-- `ProjectCreator`: the orchestrator. It doesn't know *how* to create templates or *what* initial content to include.
-  Instead, it delegates these responsibilities to two injected strategies:
-- `ProjectCreatorTemplateProcessorFactory`: a factory that creates JTE template processors and injects the document info.
-  It also defines *which* files to generate via `createFilenameMappings()`, a map of file names to their own template processor.
-- `ProjectCreatorInitialContentSupplier`: a strategy that provides the sample content and additional resources (e.g. images).
-  The default implementation loads a separate `.jte` template with the sample code, plus the image. .br
-  If `--empty` is provided, the `Empty` supplier is used, which returns empty content and no resources.
+- `ProjectCreator` is the orchestrator: it doesn't know *how* to create templates or *what* initial content to include.
+  Instead, it delegates to two injected strategies:
+- `ProjectCreatorTemplateProcessorFactory` creates JTE template processors, injects the document info,
+  and defines *which* files to generate via `createFilenameMappings()` (a map of file names to their template processor).
+- `ProjectCreatorInitialContentSupplier` provides sample content and additional resources (e.g. images).
+  By default, it loads a separate `.jte` template with sample code plus the image. .br
+  If `--empty` is provided, the `Empty` supplier kicks in instead, returning empty content and no resources.
 
-When `createResources()` is called, `ProjectCreator` iterates over the factory's file mappings,
-processes each template, and collects all results.
+When `createResources()` is called, `ProjectCreator` goes through the factory's file mappings,
+processes each template, and collects the results.
 
 ```kotlin
 class ProjectCreator(
@@ -206,11 +205,11 @@ class ProjectCreator(
 
 #### What proved me wrong
 
-I knew this solution was slightly excessive, but I went with it anyway.
-Overengineered, until, about one year later, I added support for a new document type: `docs`.
-This new type allows Quarkdown to generate multi-page technical documentation and wikis,
-which have a different structure and different sample content compared to the other types.
-This is the structure of a `docs` project that should be generated:
+I knew this was a bit much, but I went with it anyway.
+It felt overengineered... until about a year later, when I added a new document type: `docs`.
+This type lets Quarkdown generate multi-page technical documentation and wikis like [this one](https://quarkdown.com/wiki),
+which need a different structure and different sample content.
+Here's what a `docs` project looks like:
 
 .filetree 
     - my-project
@@ -221,18 +220,18 @@ This is the structure of a `docs` project that should be generated:
       - page-2.qd
       - page-3.qd
 
-On top of that, `page-N.qd` files shouldn't be generated if the `--empty` flag is provided.
+Also, `page-N.qd` files shouldn't be generated if `--empty` is provided.
 
-If I had stuck with the naive implementation, that would have been a nightmare to keep up with:
-just imagine the amount of conditional logic and nesting to accommodate the new files to be generated.
+With the naive implementation, this would have been a nightmare. Imagine the conditional logic
+and nesting needed just to handle the new files.
 
-Instead, with my implementation it was just a matter of adding two small classes:
+With my approach, it was just two small classes:
 
-- `DocsProjectCreatorTemplateProcessorFactory`: overrides `createFilenameMappings()` to generate *two* files instead of one: `_setup.qd` and `main.qd`.
-- `DocsProjectCreatorInitialContentSupplier`: reuses the default's sample code content and provides the additional page resources (`_nav.qd`, `page-1.qd`, `page-2.qd`, `page-3.qd`).
+- `DocsProjectCreatorTemplateProcessorFactory` overrides `createFilenameMappings()` to generate *two* files instead of one: `_setup.qd` and `main.qd`.
+- `DocsProjectCreatorInitialContentSupplier` reuses the default's sample code content and provides the additional page resources (`_nav.qd`, `page-1.qd`, `page-2.qd`, `page-3.qd`).
 
-No changes to `ProjectCreator` itself were needed: it remained completely unaware of `docs` projects.
-The CLI command simply picks the right strategy based on the document type, and the rest falls into place:
+No changes to `ProjectCreator` itself: it remained completely unaware of `docs` projects.
+The CLI command just picks the right strategy based on the document type, and the rest falls into place:
 
 ```kotlin
 return ProjectCreator(
