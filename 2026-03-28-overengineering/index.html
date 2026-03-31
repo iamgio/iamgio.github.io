@@ -145,7 +145,14 @@ a:not(.sidebar a, .blog-item-link-wrapper)::after {
         padding: 2rem !important;
         width: calc(100% + 4rem) !important;
     }
-}</style><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "686c97ccb1484005a79531ba921021ac"}'></script><div class="container fullwidth blog-navigation"><div style="justify-content: flex-start; align-items: center; column-gap: 12.0px;" class="stack stack-row"><p>Giorgio Garofalo</p><p>•</p><p><a href="/">Home</a></p></div></div><span class="blog-date">March 28, 2026</span><h1 class="page-break" id="the-blurred-line-between-overengineering-and-anticipating-change">The blurred line between overengineering and anticipating change</h1><p>Up until the last decade or so, hardware was so limited that engineers spent most of their time squeezing every transistor
+}</style><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "686c97ccb1484005a79531ba921021ac"}'></script><div class="container fullwidth blog-navigation"><div style="justify-content: flex-start; align-items: center; column-gap: 12.0px;" class="stack stack-row"><p>Giorgio Garofalo</p><p>•</p><p><a href="/">Home</a></p></div></div><span class="blog-date">March 28, 2026</span><h1 class="page-break" id="the-blurred-line-between-overengineering-and-anticipating-change">The blurred line between overengineering and anticipating change</h1><style data-hidden="">.classDiagram { width: 100% !important }
+
+@media (min-width: 800px) {
+    #mermaid-450183093 {
+        width: 120% !important;
+        margin-left: -10% !important;
+    }
+}</style><p>Up until the last decade or so, hardware was so limited that engineers spent most of their time squeezing every transistor
 out of chips we&rsquo;d now call prehistoric.
 I&rsquo;m still amazed by the optimizations video games pulled off in the late 90&rsquo;s and early 2000&rsquo;s,
 like <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">Quake&rsquo;s fast inverse square root</a> or <a href="https://arstechnica.com/gaming/2021/09/war-stories-how-crash-bandicoot-hacked-the-original-playstation/">Crash Bandicoot literally hacking the PS1</a> to swap data faster.</p><p>But times changed. Engineers no longer need low-level tricks to achieve the impossible,
@@ -232,7 +239,7 @@ processes each template, and collects the results.</p><pre><code class="language
         }
     }
 }</code></pre><figure id="figure-2"><pre class="mermaid">classDiagram
-    direction TB
+    direction LR
     class ProjectCreator {
         -mainFileName String
         +createResources() Set~OutputResource~
