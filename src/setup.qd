@@ -2,6 +2,7 @@
 .doctype {plain}
 .doclang {English}
 .theme {paperwhite} layout:{latex}
+.htmloptions baseurl:{https://iamgio.eu}
 
 .dockeywords
   - Giorgio Garofalo

@@ -17,19 +17,12 @@ jobs:
           quarkdown-version: 'devbuild'
       
       - name: Build
-        run: quarkdown c src/main.qd --out output --clean
-      
-      - name: Get output directory
-        id: output-dir
-        run: echo "dir=$(ls -d output/*/)" >> $GITHUB_OUTPUT
-
-      - name: Copy static files
-        run: cp -r static/ ${{ steps.output-dir.outputs.dir }}static/
+        run: quarkdown c src/main.qd --out-name site --clean
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: dist
-          publish_dir: ${{ steps.output-dir.outputs.dir }}
+          publish_dir: ./quarkdown-output/site
           cname: iamgio.eu
